@@ -15,6 +15,9 @@ private $poller;
 
 	}
 
+	/**
+	 * Methode permettant de recuperer les ip présentes dans centreon
+	 */
 	function getIpHost() {
 	$out = shell_exec('/usr/bin/centreon -u ' . $this->user . ' -p ' . $this->password . '  -o HOST -a show | cut -f4 -d";" |  grep -v "address" ');
 	$iptab = preg_split('/\s+/', trim($out));

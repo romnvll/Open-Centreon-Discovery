@@ -7,9 +7,11 @@ class scan {
 	private $endip;
 	private $startipLong;
 	private $endipLong;
+	private $version_snmp;
 
-public function __construct($ip) {
+public function __construct($ip,$version_snmp) {
 	$this->ip = $ip;
+	$this->version_snmp = $version_snmp;
 	
 	require('IPv4.class.php');
 	
@@ -26,6 +28,10 @@ public function __construct($ip) {
  * 
  */
 public function scan($community) {
+	
+
+
+
 	require('config.php');
 	$tabip=array();
 	
@@ -33,10 +39,20 @@ public function scan($community) {
 	$ip=long2ip($this->startipLong++);
 	
 		
-
-	$snmp = new SNMP(SNMP::VERSION_2c,$ip,$community,2000);
+	if ($this->version_snmp == 2) {
+		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,1000);
+	}
+	if ($this->version_snmp  == 1) {
+		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,1000);
+		
+	}
+	
+	
+	
+	
 	if (@$snmp->get("sysDescr.0")) {
-	array_push($tabip,$ip);
+	
+		array_push($tabip,$ip);
 	
 	}	
 	
@@ -49,9 +65,16 @@ public function scan($community) {
  * Méthode permettant de detecter un OS et retourner le nom 
  */
 public function getOs($ip,$community) {
-	$snmp = new SNMP(SNMP::VERSION_2c,$ip, $community,1000);
+	if ($this->version_snmp == 2) {
+		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,1000);
+	}
+	if ($this->version_snmp  == 1) {
+		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,1000);
+		
+	}
+	
 	@$sysdesc = $snmp->get("1.3.6.1.2.1.1.1.0");
-	//echo $sysdesc;
+	
 	if (stripos($sysdesc,"windows")) {
 	$os = "<i class=\"fa fa-windows\" style=\"font-size:36px\"></i>";
 
@@ -92,7 +115,14 @@ public function getOs($ip,$community) {
 }
 
 public function getName($ip,$community) {
-	 $snmp = new SNMP(SNMP::VERSION_2c,$ip, $community,1000);
+	if ($this->version_snmp == 2) {
+		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,1000);
+	}
+	if ($this->version_snmp  == 1) {
+		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,1000);
+		
+	}
+	 
         @$sysname = $snmp->get("1.3.6.1.2.1.1.5.0");
 	
 	return @$sysname;

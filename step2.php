@@ -16,9 +16,10 @@ require_once 'Scan.class.php';
 
 
 
-@$scan = new scan($_GET['hostNetwork']);
+@$scan = new scan($_GET['hostNetwork'],$_GET['version']);
 
-@$tab = $scan->scan($_GET['community']);
+@$tab = $scan->scan($_GET['community'],$_GET['version']);
+
 
 $centreon = new Centreon();
 
