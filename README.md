@@ -1,6 +1,8 @@
 # Centreon_Discovery
 Projet de découverte automatique pour centreon testé sur CES 19.10.
 
+ATTENTION, c'est un programme en version très beta!!!
+
 Pour le moment, ce programme fonctionne uniquement pour une solution centreon CES avec le poller sur le même serveur .
 
 ##Installation :
