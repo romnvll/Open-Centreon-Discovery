@@ -11,7 +11,7 @@ cd /usr/share
 git clone https://github.com/romnvll/Centreon_Discovery.git
 
 le fichier /opt/rh/httpd24/root/etc/httpd/conf.d/discovery.conf :
-
+###########################################
 Alias /discovery /usr/share/discovery/
 <LocationMatch ^/discovery/(.*\.php(/.*)?)$>
    ProxyPassMatch fcgi://127.0.0.1:9043/usr/share/discovery/$1
@@ -33,4 +33,8 @@ ProxyTimeout 300
 
 
 RedirectMatch ^/$ /discovery
+###########################################
+
+Le fichier config.php devra contenir login/mdp de votre plateforme CES + le nom de votre poller 
+
 
