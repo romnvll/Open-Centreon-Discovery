@@ -1,4 +1,4 @@
-# Centreon_Discovery
+# Open Centreon Discovery
 Projet de découverte automatique pour centreon testé sur CES 19.10.
 
 ATTENTION, c'est un programme en version très beta!!!
