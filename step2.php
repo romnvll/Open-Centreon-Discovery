@@ -16,7 +16,7 @@ require_once 'Scan.class.php';
 
 
 
-@$scan = new scan($_GET['hostNetwork'],$_GET['version']);
+@$scan = new scan($_GET['hostNetwork'],$_GET['version'],4000);
 
 @$tab = $scan->scan($_GET['community'],$_GET['version']);
 

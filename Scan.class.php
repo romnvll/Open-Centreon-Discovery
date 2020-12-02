@@ -8,10 +8,12 @@ class scan {
 	private $startipLong;
 	private $endipLong;
 	private $version_snmp;
+	private $timeout_snmp;
 
-public function __construct($ip,$version_snmp) {
+public function __construct($ip,$version_snmp,$timeout_snmp) {
 	$this->ip = $ip;
 	$this->version_snmp = $version_snmp;
+	$this->timeout_snmp = $timeout_snmp;
 	
 	require('IPv4.class.php');
 	
@@ -35,15 +37,16 @@ public function scan($community) {
 	require('config.php');
 	$tabip=array();
 	
+	
 	while ($this->startipLong <= $this->endipLong) {
 	$ip=long2ip($this->startipLong++);
 	
 		
 	if ($this->version_snmp == 2) {
-		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,1000);
+		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,$this->timeout_snmp);
 	}
 	if ($this->version_snmp  == 1) {
-		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,1000);
+		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,$this->timeout_snmp);
 		
 	}
 	
@@ -66,10 +69,10 @@ public function scan($community) {
  */
 public function getOs($ip,$community) {
 	if ($this->version_snmp == 2) {
-		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,1000);
+		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,$this->timeout_snmp);
 	}
 	if ($this->version_snmp  == 1) {
-		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,1000);
+		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,$this->timeout_snmp);
 		
 	}
 	
@@ -116,10 +119,10 @@ public function getOs($ip,$community) {
 
 public function getName($ip,$community) {
 	if ($this->version_snmp == 2) {
-		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,1000);
+		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,$this->timeout_snmp);
 	}
 	if ($this->version_snmp  == 1) {
-		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,1000);
+		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,$this->timeout_snmp);
 		
 	}
 	 
