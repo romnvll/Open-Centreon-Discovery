@@ -51,41 +51,43 @@ $centreon = new Centreon();
 
             //tableau qui fait la difference entre le resultat du scan et les hotes de centreon
             $diff = array_diff($tab, $centreon->getIpHost());
-            
-         
-            
+
+
+
             echo "<td><input type=\"checkbox\" id=\"cocher\" onclick=\"setCheckBoxes('hosts', 'host[]');\"></td>";
             echo "<td></td>";
             echo "<td></td>";
-           
+
             foreach ($diff as $ip) {
-                // Affichage des templates dans des options list
+                // Affichage des templates HOST dans des options list
                 echo "<tr>";
                 echo  "<td><input type='checkbox' id=" . $ip . " name='host[]' value=" . $ip . "></td>";
                 echo  "<td><label for='$ip'>" . $ip . " (" . $scan->getName($ip, $_GET['community']) . ") </label></td>";
                 echo "<td>" . $scan->getOs($ip, $_GET['community']) . "</td>";
 
-
-                echo "<td><select name=\"template$ip\" class=\"custom-select inputGroupSelect01\" id=\"inputGroupSelect01\">\n";
+                //affichage des templates HOTES
+                echo "<td>";
+                echo "<select name=\"template[]\" class=\"custom-select\" id=\"inputGroupSelect01\">";
                 echo "<option ></option> ";
                 foreach ($centreon->getTemplateName() as $key => $tplName) {
 
-
-                    echo "<option value=" . $tplName . " class=template>" . $tplName . "</option> ";
+                    echo "<option value=" . $tplName . " class=template>" . $tplName . "</option>";
                 }
                 echo    "</select></td>";
-
-
-                echo "<td><select name=\"templateapps1$ip\" class=\"custom-select\" id=\"inputGroupSelect02\">";
+                echo "<td><select name=\"templateapps1[]\" class=\"custom-select\" id=\"inputGroupSelect02\">";
                 echo "<option value=\"\"></option> ";
+
+                //affichage des templates APPS1
                 foreach ($centreon->getTemplateName() as $key => $tplName) {
 
                     echo "<option value=" . $tplName . ">" . $tplName . "</option> ";
                 }
                 echo    "</select></td>";
 
-                echo "<td><select name=\"templateapps2$ip\" class=\"custom-select\" id=\"inputGroupSelect03\">";
+                echo "<td><select name=\"templateapps2[]\" class=\"custom-select\" id=\"inputGroupSelect03\">";
                 echo "<option value=\"\"></option> ";
+
+                //affichage des templates APPS2
                 foreach ($centreon->getTemplateName() as $key => $tplName) {
 
                     echo "<option value=" . $tplName . ">" . $tplName . "</option> ";
@@ -99,8 +101,8 @@ $centreon = new Centreon();
             ?>
         </tbody>
     </table>
-    
-      
+
+
 
     <input type="hidden" value="<?php echo $_GET['community']; ?>" name="community" id="community2">
     <select name="version">
@@ -109,7 +111,3 @@ $centreon = new Centreon();
     </select>
     <input type="submit">
 </form>
-
-
-
-
