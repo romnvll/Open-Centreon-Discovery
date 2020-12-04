@@ -38,10 +38,10 @@
 
 			$count++;
 			if ($snmpversion == 2 ) {
-			$snmp = new SNMP(SNMP::VERSION_2c, $ip, $communitySnmp, 1000);
+			$snmp = new SNMP(SNMP::VERSION_2c, $ip, $communitySnmp, 4000);
 			}
 			if ($snmpversion == 1 ) {
-				$snmp = new SNMP(SNMP::VERSION_1, $ip, $communitySnmp, 1000);
+				$snmp = new SNMP(SNMP::VERSION_1, $ip, $communitySnmp, 4000);
 				}
 
 			@$nom  = $snmp->get("1.3.6.1.2.1.1.5.0");

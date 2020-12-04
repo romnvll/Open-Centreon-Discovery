@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <script src="js/bootstrap.js"></script>
+<script src="js/mutlipleselection.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <?php
@@ -16,9 +17,9 @@ require_once 'Scan.class.php';
 
 
 
-@$scan = new scan($_GET['hostNetwork'],$_GET['version'],4000);
+@$scan = new scan($_GET['hostNetwork'], $_GET['version'], 4000);
 
-@$tab = $scan->scan($_GET['community'],$_GET['version']);
+@$tab = $scan->scan($_GET['community'], $_GET['version']);
 
 
 $centreon = new Centreon();
@@ -28,20 +29,9 @@ $centreon = new Centreon();
 
 ?>
 
-<input type="checkbox" id="cocher" onclick="setCheckBoxes('hosts', 'host[]');">
+
 <form action="result.php" method="get" name="hosts">
-<table class="table table-sm">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">1</th>
-                <th scope="col">2</th>
-                <th scope="col">Template Host</th>
-                <th scope="col">Template APPS1</th>
-                <th scope="col">Template APPS2</th>
-            </tr>
-        </thead>
-</table>
+
     <table class="table table-sm">
         <thead>
             <tr>
@@ -54,27 +44,34 @@ $centreon = new Centreon();
             </tr>
         </thead>
         <tbody>
-            
+
 
 
             <?php
 
+            //tableau qui fait la difference entre le resultat du scan et les hotes de centreon
             $diff = array_diff($tab, $centreon->getIpHost());
-
-
+            
+         
+            
+            echo "<td><input type=\"checkbox\" id=\"cocher\" onclick=\"setCheckBoxes('hosts', 'host[]');\"></td>";
+            echo "<td></td>";
+            echo "<td></td>";
+           
             foreach ($diff as $ip) {
+                // Affichage des templates dans des options list
                 echo "<tr>";
                 echo  "<td><input type='checkbox' id=" . $ip . " name='host[]' value=" . $ip . "></td>";
                 echo  "<td><label for='$ip'>" . $ip . " (" . $scan->getName($ip, $_GET['community']) . ") </label></td>";
                 echo "<td>" . $scan->getOs($ip, $_GET['community']) . "</td>";
 
 
-                echo "<td><select name=\"template$ip\" class=\"custom-select\" id=\"inputGroupSelect01\">\n";
+                echo "<td><select name=\"template$ip\" class=\"custom-select inputGroupSelect01\" id=\"inputGroupSelect01\">\n";
                 echo "<option ></option> ";
                 foreach ($centreon->getTemplateName() as $key => $tplName) {
 
 
-                    echo "<option value=" . $tplName . ">" . $tplName . "</option> ";
+                    echo "<option value=" . $tplName . " class=template>" . $tplName . "</option> ";
                 }
                 echo    "</select></td>";
 
@@ -102,35 +99,10 @@ $centreon = new Centreon();
             ?>
         </tbody>
     </table>
-    <script>
-        function setCheckBoxes(frm, fname) {
-
-            var frm = document.forms[frm];
-            if (frm == 'undefined') {
-
-                return;
-            }
-
-            var chkBoxs = frm.elements[fname];
-            if (chkBoxs == 'undefined') {
-                return;
-            }
-
-            for ($k in chkBoxs) {
-
-
-                chkBoxs[$k].checked = true;
-
-                if (document.getElementById("cocher").checked == false) {
-                    chkBoxs[$k].checked = false
-                }
-
-            }
-
-        }
-    </script>
     
-    <input type="hidden" value="<?php    echo $_GET['community']; ?>" name="community" id="community2">
+      
+
+    <input type="hidden" value="<?php echo $_GET['community']; ?>" name="community" id="community2">
     <select name="version">
         <option value="2c">2c</option>
         <option value="1">1</option>
@@ -138,4 +110,6 @@ $centreon = new Centreon();
     <input type="submit">
 </form>
 
-<?php
+
+
+
