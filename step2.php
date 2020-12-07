@@ -57,6 +57,17 @@ $centreon = new Centreon();
             echo "<td><input type=\"checkbox\" id=\"cocher\" onclick=\"setCheckBoxes('hosts', 'host[]');\"></td>";
             echo "<td></td>";
             echo "<td></td>";
+            //affichage selection multiple template host
+             echo "<td>";
+                echo "<select name=\"template_multiple\" class=\"custom-select\" id=\"template_mutliple\" onChange=\"change_host('template_multiple','template[]')\">";
+                echo "<option ></option> ";
+                foreach ($centreon->getTemplateName() as $key => $tplName) {
+
+                    echo "<option value=" . $tplName . " class=template>" . $tplName . "</option>";
+                }
+               echo "</select>";
+            echo "<td></td>";
+            //Fin affichage selection multiple template host
 
             foreach ($diff as $ip) {
                 // Affichage des templates HOST dans des options list
