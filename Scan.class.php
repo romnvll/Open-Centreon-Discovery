@@ -78,7 +78,11 @@ public function getOs($ip,$community) {
 	
 	@$sysdesc = $snmp->get("1.3.6.1.2.1.1.1.0");
 	
-    if (stripos($sysdesc,"windows")!==false) {
+
+    
+
+	if (stripos($sysdesc,"windows")!==false) {
+
 	$os = "<i class=\"fa fa-windows\" style=\"font-size:36px\"></i>";
 
 	}

@@ -6,12 +6,13 @@ class Centreon {
 private $user ;
 private $password;
 private $poller;
+private $clapi;
 
 	function __construct() {
 	include ('config.php');
 	$this->user = $config['centreon']['user'];
 	$this->password = $config['centreon']['password'];
-        $this->clapi = $config['centreon']['clapi'];
+    $this->clapi = $config['centreon']['clapi'];
 	$this->poller = $config['pollers']['poller1'];
 
 	}

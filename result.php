@@ -38,22 +38,20 @@
 
 			$count++;
 			if ($snmpversion == 2 ) {
-			$snmp = new SNMP(SNMP::VERSION_2c, $ip, $communitySnmp, 1000);
+			$snmp = new SNMP(SNMP::VERSION_2c, $ip, $communitySnmp, 4000);
 			}
 			if ($snmpversion == 1 ) {
-				$snmp = new SNMP(SNMP::VERSION_1, $ip, $communitySnmp, 1000);
-				}
+			$snmp = new SNMP(SNMP::VERSION_1, $ip, $communitySnmp, 6000);
+			}
 
 			@$nom  = $snmp->get("1.3.6.1.2.1.1.5.0");
-			$ipsanspoint = str_replace(".", "_", $ip);
-			$T_host = "template" . $ipsanspoint;
-			$template = $_GET[$T_host];
-
-			$T_hostapps1 = "templateapps1" . $ipsanspoint;
-			$templateapps1 = $_GET[$T_hostapps1];
-
-			$T_hostapps2 = "templateapps2" . $ipsanspoint;
-			$templateapps2 = $_GET[$T_hostapps2];
+			
+			
+			$template = $_GET['template'][$count - 1];
+			$ip = $_GET['host'][$count - 1];
+			
+			$templateapps1 = $_GET['templateapps1'][$count - 1];
+			$templateapps2 = $_GET['templateapps2'][$count - 1];
 
 
 			echo "<tr>";
