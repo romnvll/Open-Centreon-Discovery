@@ -50,7 +50,7 @@ if (!$_SESSION['isAdmin']) {
         </select>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Scan</button>
-      <p class="mt-5 mb-3 text-muted">Centreon Host Discovery</p>
+      <p class="mt-5 mb-3 text-muted">Open Centreon Host Discovery</p>
 
     </form>
   </body>

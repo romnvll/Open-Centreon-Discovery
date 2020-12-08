@@ -78,30 +78,31 @@ public function getOs($ip,$community) {
 	
 	@$sysdesc = $snmp->get("1.3.6.1.2.1.1.1.0");
 	
-	if (stripos($sysdesc,"windows")) {
+    if (stripos($sysdesc,"windows")!==false) {
 	$os = "<i class=\"fa fa-windows\" style=\"font-size:36px\"></i>";
 
 	}
 
-	elseif (stripos($sysdesc,"linux")) {
+	elseif (stripos($sysdesc,"linux")!==false) {
 	$os = "<i class=\"fa fa-linux\" style=\"font-size:36px\"></i>";
 	}
 
-	elseif (stripos($sysdesc,"ricoh")) {
+	elseif (stripos($sysdesc,"ricoh")!==false) {
 	$os = "Ricoh";
 	}
 
-	elseif (stripos($sysdesc,"cisco ios")) {
+	elseif (stripos($sysdesc,"cisco ios")!==false) {
 	$os = "Cisco";
 	}
 
-	elseif (stripos($sysdesc,"Dell EMC Networking")) {
+	elseif (stripos($sysdesc,"Dell EMC Networking")!==false) {
 	$os = "Dell Networking";
 	}
 
-	elseif (stripos($sysdesc,"VMware")) {
+	elseif (stripos($sysdesc,"VMware")!==false) {
 	$os = "VMWare";
 	}
+
 
 
 	else {
