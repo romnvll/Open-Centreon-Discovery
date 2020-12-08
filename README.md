@@ -87,8 +87,8 @@ adapter le port 904x en fonction de votre configuration, doit être identique à
 
 activer la configuration et relancer apache
 
-a2enconf discovery
-systemctl reload apache2
+	a2enconf discovery
+	systemctl reload apache2
 
 Copier les fichiers 
 
