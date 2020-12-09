@@ -28,7 +28,7 @@ créer le fichier /opt/rh/httpd24/root/etc/httpd/conf.d/discovery.conf :
 	###########################################
 	Alias /discovery /usr/share/discovery/
 	<LocationMatch ^/discovery/(.*\.php(/.*)?)$>
-   		ProxyPassMatch fcgi://127.0.0.1:9043/usr/share/discovery/$1
+   		ProxyPassMatch fcgi://127.0.0.1:9043/usr/share/discovery/$1 timeout=1800
 	</LocationMatch>
 	ProxyTimeout 300
 	<Directory "/usr/share/discovery">
@@ -62,7 +62,7 @@ créer le fichier /etc/apache2/conf-available/discovery.conf :
 	###########################################
 	Alias /discovery /usr/share/discovery/
 	<LocationMatch ^/discovery/(.*\.php(/.*)?)$>
-   		ProxyPassMatch fcgi://127.0.0.1:9042/usr/share/discovery/$1
+   		ProxyPassMatch fcgi://127.0.0.1:9042/usr/share/discovery/$1 timeout=1800
 	</LocationMatch>
 	ProxyTimeout 300
 	<Directory "/usr/share/discovery">
