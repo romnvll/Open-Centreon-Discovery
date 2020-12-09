@@ -9,12 +9,13 @@ class scan {
 	private $endipLong;
 	private $version_snmp;
 	private $timeout_snmp;
+	private $community;
 
-public function __construct($ip,$version_snmp,$timeout_snmp) {
+public function __construct($ip,$version_snmp,$timeout_snmp,$community) {
 	$this->ip = $ip;
 	$this->version_snmp = $version_snmp;
 	$this->timeout_snmp = $timeout_snmp;
-	
+	$this->community = $community;
 	require('IPv4.class.php');
 	
 	@$net = Net_IPv4::parseAddress($this->ip);
@@ -28,36 +29,46 @@ public function __construct($ip,$version_snmp,$timeout_snmp) {
 /**
  * Methode permettant de scanner le réseau en SNMP avec une communauté donnée
  * 
+ * 
  */
-public function scan($community) {
+public function scan() {
 	
 
 
-
-	require('config.php');
+	require('config.php');	
 	$tabip=array();
 	
 	
 	while ($this->startipLong <= $this->endipLong) {
+		
 	$ip=long2ip($this->startipLong++);
 	
+	
+	
+	         
 		
 	if ($this->version_snmp == 2) {
-		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,$this->timeout_snmp);
+		
+		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$this->community,$this->timeout_snmp,1);
+		
 	}
 	if ($this->version_snmp  == 1) {
-		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,$this->timeout_snmp);
+		$snmp = new SNMP(SNMP::VERSION_1,$ip,$this->community,$this->timeout_snmp,1);
 		
 	}
 	
+	
+                
 	
 	
 	
 	if (@$snmp->get("sysDescr.0")) {
-	
+			
 		array_push($tabip,$ip);
+		
 	
 	}	
+	
 	
 	
 	}
@@ -66,13 +77,14 @@ public function scan($community) {
 }
 /**
  * Méthode permettant de detecter un OS et retourner le nom 
+ * @ return String
  */
-public function getOs($ip,$community) {
+public function getOs($ip) {
 	if ($this->version_snmp == 2) {
-		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,$this->timeout_snmp);
+		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$this->community,$this->timeout_snmp);
 	}
 	if ($this->version_snmp  == 1) {
-		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,$this->timeout_snmp);
+		$snmp = new SNMP(SNMP::VERSION_1,$ip,$this->community,$this->timeout_snmp);
 		
 	}
 	
@@ -122,12 +134,12 @@ public function getOs($ip,$community) {
 
 }
 
-public function getName($ip,$community) {
+public function getName($ip) {
 	if ($this->version_snmp == 2) {
-		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$community,$this->timeout_snmp);
+		$snmp = new SNMP(SNMP::VERSION_2C,$ip,$this->community,$this->timeout_snmp);
 	}
 	if ($this->version_snmp  == 1) {
-		$snmp = new SNMP(SNMP::VERSION_1,$ip,$community,$this->timeout_snmp);
+		$snmp = new SNMP(SNMP::VERSION_1,$ip,$this->community,$this->timeout_snmp);
 		
 	}
 	 

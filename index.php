@@ -43,12 +43,28 @@ if (!$_SESSION['isAdmin']) {
           <label class="input-group-text" for="inputGroupSelect01">Version SNMP</label>
         </div>
         <select class="custom-select" id="inputGroupSelect01" name="version">
-          
+
           <option value="1">1</option>
           <option selected value="2">2c</option>
           <!--<option value="3">Three</option>-->
         </select>
+
       </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Timeout SNMP</label>
+        </div>
+        <input type="text" class="form-control" placeholder="timeout" value="4000" name="timeout">
+
+      </div>
+      <small id="Help timeout" class="form-text text-muted">
+        Si le scan est trop long, essayez de baisser ce timeout .
+        Si le timeout est trop bas, il se peut que le scan ne detecte pas d'agent SNMP.
+       
+      </small>
+      <br>
+
       <button class="btn btn-lg btn-primary btn-block" type="submit">Scan</button>
       <p class="mt-5 mb-3 text-muted">Open Centreon Host Discovery</p>
 

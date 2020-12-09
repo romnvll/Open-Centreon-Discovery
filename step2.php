@@ -17,9 +17,11 @@ require_once 'Scan.class.php';
 
 
 
-@$scan = new scan($_GET['hostNetwork'], $_GET['version'], 4000);
+@$scan = new scan($_GET['hostNetwork'], $_GET['version'], $_GET['timeout'],$_GET['community']);
 
-@$tab = $scan->scan($_GET['community'], $_GET['version']);
+
+//on scan et on retourn un tableau d'ip qui repond au SNMP
+@$tab = $scan->scan();
 
 
 $centreon = new Centreon();
@@ -51,7 +53,8 @@ $centreon = new Centreon();
 
             //tableau qui fait la difference entre le resultat du scan et les hotes de centreon
             $diff = array_diff($tab, $centreon->getIpHost());
-
+            
+            
 
 
             echo "<td><input type=\"checkbox\" id=\"cocher\" onclick=\"setCheckBoxes('hosts', 'host[]');\"></td>";
@@ -68,13 +71,14 @@ $centreon = new Centreon();
                echo "</select>";
             echo "<td></td>";
             //Fin affichage selection multiple template host
-
+                
             foreach ($diff as $ip) {
+                
                 // Affichage des templates HOST dans des options list
                 echo "<tr>";
                 echo  "<td><input type='checkbox' id=" . $ip . " name='host[]' value=" . $ip . "></td>";
-                echo  "<td><label for='$ip'>" . $ip . " (" . $scan->getName($ip, $_GET['community']) . ") </label></td>";
-                echo "<td>" . $scan->getOs($ip, $_GET['community']) . "</td>";
+                echo  "<td><label for='$ip'>" . $ip . " (" . $scan->getName($ip) . ") </label></td>";
+                echo "<td>" . $scan->getOs($ip) . "</td>";
 
                 //affichage des templates HOTES
                 echo "<td>";
@@ -104,10 +108,13 @@ $centreon = new Centreon();
                     echo "<option value=" . $tplName . ">" . $tplName . "</option> ";
                 }
                 echo    "</select></td>";
-
+                
+               
                 echo "</tr>";
+                
             }
-
+            
+           
 
             ?>
         </tbody>
