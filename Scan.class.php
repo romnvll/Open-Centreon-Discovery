@@ -1,5 +1,7 @@
 <?php
+require ('host.class.php')	;
 class scan {
+
 
 	private $ip;
 	private $startip;
@@ -10,6 +12,8 @@ class scan {
 	private $version_snmp;
 	private $timeout_snmp;
 	private $community;
+	private $hosts = array();
+	
 
 public function __construct($ip,$version_snmp,$timeout_snmp,$community) {
 	$this->ip = $ip;
@@ -26,14 +30,18 @@ public function __construct($ip,$version_snmp,$timeout_snmp,$community) {
 
 	}
 
+function getHosts() {
+	return $this->hosts;
+}
+
 /**
  * Methode permettant de scanner le réseau en SNMP avec une communauté donnée
- * 
+ * @return Array tableau d'adresses ip
  * 
  */
 public function scan() {
 	
-
+	
 
 	require('config.php');	
 	$tabip=array();
@@ -57,21 +65,26 @@ public function scan() {
 		
 	}
 	
-	
-                
-	
-	
-	
+
+	//si la machine repond en SNMP, on creer un tableau d'ip pour la comparaison et un tableau d'hote
 	if (@$snmp->get("sysDescr.0")) {
-			
-		array_push($tabip,$ip);
+		
+		$host = new host($this->getName($ip), "$ip", $this->community,$this->getOs($ip));
+		
+		
+		array_push($this->hosts,$host);
+		
+		
+		array_push($tabip,$host->getIp());
 		
 	
-	}	
+	}
 	
 	
+ 
 	
 	}
+	
 	return $tabip;
 
 }
@@ -89,9 +102,7 @@ public function getOs($ip) {
 	}
 	
 	@$sysdesc = $snmp->get("1.3.6.1.2.1.1.1.0");
-	
-
-    
+	    
 
 	if (stripos($sysdesc,"windows")!==false) {
 
@@ -120,17 +131,13 @@ public function getOs($ip) {
 	}
 
 
-
+	 
 	else {
 	$os = "Unknown";
 	}
 
 
-	return @$os;
-
-
-
-	
+	return @$os;	
 
 }
 

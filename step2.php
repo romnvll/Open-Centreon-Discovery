@@ -14,14 +14,16 @@ error_reporting(E_ALL);
 
 require_once 'Centreon.class.php';
 require_once 'Scan.class.php';
+require_once 'host.class.php';
 
 
 
 @$scan = new scan($_GET['hostNetwork'], $_GET['version'], $_GET['timeout'],$_GET['community']);
 
 
-//on scan et on retourn un tableau d'ip qui repond au SNMP
+//on scan et on retourne un tableau d'ip qui repond au SNMP
 @$tab = $scan->scan();
+
 
 
 $centreon = new Centreon();
@@ -50,8 +52,18 @@ $centreon = new Centreon();
 
 
             <?php
+        //obtention des hosts resultants du scan
+            //taille du tableau 
+            $tab = array() ;
+            foreach ($scan->getHosts() as $ip ) {
+                
+                array_push($tab,$ip->getIp());
+            }
 
+
+           
             //tableau qui fait la difference entre le resultat du scan et les hotes de centreon
+
             $diff = array_diff($tab, $centreon->getIpHost());
             
             
@@ -72,13 +84,18 @@ $centreon = new Centreon();
             echo "<td></td>";
             //Fin affichage selection multiple template host
                 
-            foreach ($diff as $ip) {
+               
+            foreach ($diff as $key1 => $ip) {
+                
+                //echo $key1 . "--> :" . $ip . "<br>";
+                $getOs = $scan->getHosts()[$key1]->getOs() ;
+                
                 
                 // Affichage des templates HOST dans des options list
                 echo "<tr>";
                 echo  "<td><input type='checkbox' id=" . $ip . " name='host[]' value=" . $ip . "></td>";
-                echo  "<td><label for='$ip'>" . $ip . " (" . $scan->getName($ip) . ") </label></td>";
-                echo "<td>" . $scan->getOs($ip) . "</td>";
+                echo  "<td><label for='$ip'>" . $ip . " (" . $scan->getHosts()[$key1]->getHostName() . ") </label></td>";
+                echo "<td>" . $getOs . " <input type='hidden' name='os' value='$getOs' /> </td>";
 
                 //affichage des templates HOTES
                 echo "<td>";
