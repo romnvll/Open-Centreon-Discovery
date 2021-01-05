@@ -46,7 +46,7 @@ if (!$_SESSION['isAdmin']) {
 
           <option value="1">1</option>
           <option selected value="2">2c</option>
-          <!--<option value="3">Three</option>-->
+
         </select>
 
       </div>
@@ -61,11 +61,15 @@ if (!$_SESSION['isAdmin']) {
       <small id="Help timeout" class="form-text text-muted">
         Si le scan est trop long, essayez de baisser ce timeout .
         Si le timeout est trop bas, il se peut que le scan ne detecte pas d'agent SNMP.
-       
+
       </small>
       <br>
 
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Scan</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Scan</button> 
+   
+    
+
+
       <p class="mt-5 mb-3 text-muted">Open Centreon Host Discovery</p>
 
     </form>

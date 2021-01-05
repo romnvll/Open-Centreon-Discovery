@@ -65,7 +65,7 @@ public function scan() {
 		
 	}
 	
-
+	
 	//si la machine repond en SNMP, on creer un tableau d'ip pour la comparaison et un tableau d'hote
 	if (@$snmp->get("sysDescr.0")) {
 		

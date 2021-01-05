@@ -4,6 +4,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <?php
+session_start();
+if (!$_SESSION['isAdmin']) {
+
+  header('Location: login.php');
+  exit();
+} 
 include('config.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

@@ -18,7 +18,13 @@
 
 
 		<?php
+
 		session_start();
+		if (!$_SESSION['isAdmin']) {
+
+			header('Location: login.php');
+			exit();
+		}
 		ini_set('display_errors', 1);
 		ini_set('display_startup_errors', 1);
 		snmp_set_quick_print(1);
@@ -33,35 +39,34 @@
 		$centreon = new Centreon();
 		$count = 0;
 
-		
+
 		foreach ($_GET['host'] as $key => $ip) {
 
 			$count++;
-			if ($snmpversion == 2 ) {
-			$snmp = new SNMP(SNMP::VERSION_2c, $ip, $communitySnmp, 4000);
+			if ($snmpversion == 2) {
+				$snmp = new SNMP(SNMP::VERSION_2c, $ip, $communitySnmp, 4000);
 			}
-			if ($snmpversion == 1 ) {
-			$snmp = new SNMP(SNMP::VERSION_1, $ip, $communitySnmp, 6000);
+			if ($snmpversion == 1) {
+				$snmp = new SNMP(SNMP::VERSION_1, $ip, $communitySnmp, 6000);
 			}
-			
+
 			if ($_GET['os'] == "Ricoh") {
 				@$nom = $snmp->get(".1.3.6.1.4.1.367.3.2.1.7.2.4.5.0");
-			}
-			else {
+			} else {
 				@$nom  = $snmp->get("1.3.6.1.2.1.1.5.0");
 			}
 
-			
-			
-			
+
+
+
 			$template = $_GET['template'][$count - 1];
 			$ip = $_GET['host'][$count - 1];
-			
+
 			$templateapps1 = $_GET['templateapps1'][$count - 1];
 			$templateapps2 = $_GET['templateapps2'][$count - 1];
 
-			
-			
+
+
 
 			echo "<tr>";
 			echo "<th scope=\"row\">$count</th>";
@@ -72,8 +77,8 @@
 			echo  "<td>$templateapps2</td>";
 			echo  "</tr>";
 
-			
-						
+
+
 
 			$info[$count]['nom'] = $nom;
 			$info[$count]['ip'] = $ip;
@@ -82,17 +87,13 @@
 			$info[$count]['templateapps2'] = $templateapps2;
 			$info[$count]['communitySnmp'] = $communitySnmp;
 			$info[$count]['snmpversion'] = $snmpversion;
-
-			
-			
-			
 		}
-		
-		
-		
+
+
+
 
 		$_SESSION['info'] = $info;
-		
+
 		?>
 
 	</tbody>
