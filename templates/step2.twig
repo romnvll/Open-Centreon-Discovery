@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="css/bootstrap.css">
+<script src="js/bootstrap.js"></script>
+<script src="js/sendData.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<table class="table" id="tableau">
+	<thead>
+		<tr>
+
+			<th scope="col">Nom</th>
+			<th scope="col">IP</th>
+			<th scope="col">Template Host</th>
+			<th scope="col">Template APPS 1</th>
+			<th scope="col">Template APPS 2</th>
+			<th scope="col">Poller</th>
+            
+		</tr>
+	</thead>
+	<tbody>
+   
+		{% for hote in hotes %}
+			<tr>
+
+				<td>
+					{{ hote.nom_serveur }}
+				</td>
+				<td>
+					{{ hote.ip }}
+				</td>
+				<td>
+					{{ hote.hostTemplate }}
+				</td>
+				<td>
+					{{ hote.appsTemplate1 }}
+				</td>
+				<td>
+					{{ hote.appsTemplate2 }}
+				</td>
+				<td>
+					{{ hote.poller }}
+				</td>
+                <td style="display:none">{{ hote.community}}</td>
+                <td style="display:none">{{ hote.snmpVersion}}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+<div class="container-fluid">
+	<div class="container">
+		<div class="row">
+        <div class="col-sm">
+        <form name="data" method="post" action="" id="data">
+				<input type="hidden" value="" id="transmettre" name="data">
+					<a class="btn btn-primary" href="#" role="button" onclick="f2('apply')">Appliquer dans centreon</a>
+		</div>
+			<div class="col-sm">
+				<a class="btn btn-primary" href="#" onclick="f2('applyAndReload')" role="button">Appliquer et redemarrer le moteur</a>
+			</div>
+		</div>
+        </form>
+	</div>
+</div>

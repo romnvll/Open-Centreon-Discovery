@@ -1,5 +1,6 @@
 <?php
 require ('host.class.php')	;
+require ('IPv4.class.php');
 class scan {
 
 
@@ -14,13 +15,13 @@ class scan {
 	private $community;
 	private $hosts = array();
 	
-
+	
 public function __construct($ip,$version_snmp,$timeout_snmp,$community) {
 	$this->ip = $ip;
 	$this->version_snmp = $version_snmp;
 	$this->timeout_snmp = $timeout_snmp;
 	$this->community = $community;
-	require('IPv4.class.php');
+	
 	
 	@$net = Net_IPv4::parseAddress($this->ip);
 	$this->startipLong = ip2long($net->network)+1;
@@ -37,9 +38,10 @@ function getHosts() {
 /**
  * Methode permettant de scanner le réseau en SNMP avec une communauté donnée
  * @return Array tableau d'adresses ip
+ * @param $cli indique si la methode est utilisée depuis le CLI
  * 
  */
-public function scan() {
+public function scan($cli) {
 	
 	
 
@@ -51,7 +53,9 @@ public function scan() {
 		
 	$ip=long2ip($this->startipLong++);
 	
-	
+	if ($cli == "cli") {
+		echo $ip . "\n";
+	}
 	
 	         
 		
@@ -71,7 +75,7 @@ public function scan() {
 		
 		$host = new host($this->getName($ip), "$ip", $this->community,$this->getOs($ip));
 		
-		
+		//echo $host->getHostName();
 		array_push($this->hosts,$host);
 		
 		

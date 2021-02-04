@@ -1,36 +1,39 @@
 <?php
-session_start();
-include 'Centreon.class.php';
-$centreon = new centreon();
-$size=sizeof($_SESSION['info']);
 
-$size = $size + 1;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require ('classes/Hosts.class.php');
+require ('classes/Centreon.class.php');
 
-//session_destroy();
+$centreon = new Centreon();
+
 if ($_GET['method'] == "apply") {
 	
-	for ($i=1; $i<$size; $i++) {
-		echo $_SESSION['info'][$i]['nom'] . " ajouté <br>" ;
+		$data = json_decode($_POST['data'],false);
 
-		$centreon->addhost($_SESSION['info'][$i]['ip'],$_SESSION['info'][$i]['nom'],"Central",$_SESSION['info'][$i]['template']."|".$_SESSION['info'][$i]['templateapps1']."|".$_SESSION['info'][$i]['templateapps2']);
-		$centreon->setParam($_SESSION['info'][$i]['nom'],$_SESSION['info'][$i]['communitySnmp'],$_SESSION['info'][$i]['snmpversion']);
+		foreach($data as $host){
+		$centreon = new Centreon($host->nom_serveur,$host->hostTemplate,$host->appsTemplate1,$host->appsTemplate2,$host->ip,$host->community,null,$host->snmpVersion,$host->poller);
+		$centreon->addhost($centreon);
+		header( "refresh:3;url=index.php" );
+
+		
+	}
+}
+	
+	
+if ($_GET['method'] == "applyandreload") {
+	$data = json_decode($_POST['data'],false);
+	foreach($data as $host){
+
+		$centreon = new Centreon($host->nom_serveur,$host->hostTemplate,$host->appsTemplate1,$host->appsTemplate2,$host->ip,$host->community,null,$host->snmpVersion,$host->poller);
+		$centreon->addhost($centreon);
+		$centreon->applyCfg($centreon);
 		header( "refresh:3;url=index.php" );
 	}
 	
-	
-}
-
-
-if ($_GET['method'] == "applyandreload") {
-
- for ($i=1; $i<$size; $i++) {
-                echo $_SESSION['info'][$i]['nom']. " ajouté <br>";
-
-                $centreon->addhost($_SESSION['info'][$i]['ip'],$_SESSION['info'][$i]['nom'],"Central",$_SESSION['info'][$i]['template']."|".$_SESSION['info'][$i]['templateapps1']."|".$_SESSION['info'][$i]['templateapps2']);
-                $centreon->setParam($_SESSION['info'][$i]['nom'],$_SESSION['info'][$i]['communitySnmp'],$_SESSION['info'][$i]['snmpversion']);
-        }
-	$centreon->applyCfg();
-	header( "refresh:3;url=index.php" );
+ 
+	//header( "refresh:3;url=index.php" );
 
 	
 }

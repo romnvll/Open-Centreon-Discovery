@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<script src="js/bootstrap.js"></script>
+		<script src="js/sendData.js"></script>
+		<script src="js/jquery-3.5.1.min.js"></script>
+		<script src="js/mutlipleselection.js"></script>
+
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+		<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Custom styles for this template -->
+		<title>Resulat du scan</title>
+		<meta charset='utf-8'>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	</head>
+	<body>
+		<div class="container container-fluid">
+
+			<div class="row">
+			<h1>Open Centreon Discovery</h1>
+			<svg width="50" height="50" viewbox="0 0 16 16" class="bi bi-hdd-network" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" d="M14 3H2a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
+					<path d="M5 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+					<path fill-rule="evenodd" d="M7.5 10V7h1v3a1.5 1.5 0 0 1 1.5 1.5h5.5a.5.5 0 0 1 0 1H10A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5H.5a.5.5 0 0 1 0-1H6A1.5 1.5 0 0 1 7.5 10zm0 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
+				</svg>
+				
+			</div>
+
+			<div class="row">
+			
+				
+				<table class="table table-striped" id="tableau">
+					<thead>
+
+						<tr>
+							<th><input type="checkbox" value="" id="selectAll"></th>
+							<th>
+								<label for='selectAll'>Serveur</label>
+							</th>
+							<th>Os</th>
+							<th>ip</th>
+							<th>Template Host
+								<select class="custom-select" id="selectTpl">
+									<option selected></option>
+									{% for templates in template  %}
+										<option>{{ templates }}</option>
+									{% endfor %}
+								</select>
+							</th>
+							<th>Template APPS1</th>
+							<th>Template APPS2</th>
+							<th>Poller</th>
+						</tr>
+					</thead>
+					<tbody>
+
+
+						{% if hotes|length == 0 %}
+							<div class="alert alert-warning" role="alert">
+								Aucune machine détectée !
+							</div>
+						{% endif %}
+
+						{% for Hosts in hotes %}
+
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="{{ Hosts.getIp }}" name="checkBox">
+									</div>
+								</td>
+								<td>
+									<label class="form-check-label" for="{{ Hosts.getIp }}">
+										{{ Hosts.getHostName }}
+									</label>
+								</td>
+								<td>{{ Hosts.getOs }}</td>
+								<td>{{ Hosts.getIp }}</td>
+								<td>
+
+									<select class="custom-select hardTpl">
+										<option selected></option>
+										{% for templates in template  %}
+											<option>{{ templates }}</option>
+										{% endfor %}
+									</select>
+								</td>
+
+								<td>
+									<select class="custom-select">
+										<option selected></option>
+										{% for templates in template  %}
+											<option>{{ templates }}</option>
+										{% endfor %}
+									</select>
+								</td>
+
+								<td>
+									<select class="custom-select">
+										<option selected></option>
+										{% for templates in template  %}
+											<option>{{ templates }}</option>
+										{% endfor %}
+									</select>
+								</td>
+								<td>
+									<select class="custom-select">
+										{% for poller in pollers %}
+											<option selected>{{poller}}</option>
+										{% endfor %}
+									</select>
+								</td>
+
+								<td style="display:none">{{ community }}</td>
+								<td style="display:none">{{ versionSnmp}}</td>
+
+							</tr>
+
+						{% endfor %}
+
+					</tbody>
+				</table>
+				<form name="data" method="post" action="step2.php" id="data">
+					<input type="hidden" value="" id="transmettre" name="data">
+					<button type="submit" class="btn btn-primary" onclick="f1()">Valider</button>
+				</form>
+
+			</div>
+		</div>
+	</body>
+</html>
