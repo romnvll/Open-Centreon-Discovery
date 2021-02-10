@@ -90,9 +90,10 @@ if (!$_SESSION['isAdmin']) {
               Date du dernier scan back ground : <?php
                                                   $filename = 'resultScan';
                                                   echo date("F d Y H:i:s.", filemtime($filename));
-                                                }
+                                               
               echo  "<a href=\"step2.php?backGroundScan=true\" class=\"btn btn-primary btn-lg active\" role=\"button\" aria-pressed=\"true\">Go</a> <br>";                                  
               echo "</div>";
+            }
          ?>
 
            
