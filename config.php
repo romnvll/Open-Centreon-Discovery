@@ -7,9 +7,6 @@ $config['centreon']['password'] = 'admin';
 //chemin de clapi
 $config['centreon']['clapi'] = '/usr/share/centreon/bin/centreon';
 
-//Le nom de votre poller
-//centreon -u admin -p password -a POLLERLIST
-$config['pollers']['poller1']='Central';
 
 //pour le scan BackGround
 //activation du scan backGround pour les /16 : true or false
