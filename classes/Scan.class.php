@@ -47,7 +47,7 @@ class Scan
             if ($this->snmpVersion == 1) {
                 $snmp = new SNMP(SNMP::VERSION_1, $ip, $this->community, $this->snmpTimeOut, 1);
             }
-
+            
             //si la machine repond en SNMP, on creer un tableau d'ip pour la comparaison et un tableau d'hote
             if (@$snmp->get("sysDescr.0")) {
 
@@ -74,7 +74,7 @@ class Scan
                     $hostname = $snmp->get(".1.3.6.1.4.1.367.3.2.1.7.2.4.5.0");
                 }
                 else {
-                    $hostname = $snmp->get("1.3.6.1.2.1.1.5.0");
+                    $hostname = @$snmp->get("1.3.6.1.2.1.1.5.0");
 
                 }
                

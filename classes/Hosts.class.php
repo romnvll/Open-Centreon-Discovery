@@ -1,6 +1,6 @@
 <?php
 
-class Host {
+class Host  {
 
     protected $hostName;
     protected $ip;

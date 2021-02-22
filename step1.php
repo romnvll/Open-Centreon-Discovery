@@ -6,8 +6,9 @@ error_reporting(E_ALL);
 require('classes/Scan.class.php');
 require('classes/Centreon.class.php');
 include('vendor/autoload.php');
+require('classes/Csv.class.php');
 
-$scan = new Scan($_GET['hostNetwork'], $_GET['community'], $_GET['version'], $_GET['timeout']);
+
 $centreon = new Centreon();
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader, [
@@ -18,31 +19,56 @@ $twig = new \Twig\Environment($loader, [
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 //detection des hotes non présentes dans centreon
 $centreonHost = new Centreon();
- $getIpCentreonHost = $centreonHost->getIpHost();
-
-
+$getIpCentreonHost = $centreonHost->getIpHost();
 $arrayNewHost = array();
+// Scan BackGround
+if (isset($_GET['backGroundScan'])) {
+    $csv = new CsvImporter('resultScan', ",");
+    $scan = $csv->get();
+   
 
+    foreach ($scan as $hote) {
+
+        $trouve = false;
+        foreach ($getIpCentreonHost as $centreonHost) {
+                
+            if ($centreonHost == $hote["ip"]) {
+                $trouve = true;
+                break;
+            }
+        }
+
+        if ($trouve == false) {
+            $arrayNewHost[] = new host($hote['nom_serveur'], $hote['ip'], $hote['community'], $hote['os'], $hote['snmpVersion']);
+        }
+        
+    }
+}
+//fin ScanBackGround
+
+// scan depuis un lancement manuel
+else {
+
+$scan = new Scan($_GET['hostNetwork'], $_GET['community'], $_GET['version'], $_GET['timeout']);
+$scan = $scan->Scan();
 // merci seb !
-foreach ($scan->Scan() as $hote) {
+foreach ($scan as $hote) {
 
-     $trouve=false;
-foreach ($getIpCentreonHost as $centreonHost) {
+    $trouve = false;
+    foreach ($getIpCentreonHost as $centreonHost) {
 
         if ($centreonHost == $hote->getIP()) {
-            $trouve=true;
-            break;          
- 
-        }         
+            $trouve = true;
+            break;
+        }
+    }
 
-    } 
-    
     if ($trouve == false) {
         $arrayNewHost[] = new host($hote->getHostName(), $hote->getIP(), $hote->getCommunity(), $hote->getOs(), $hote->getSnmpVersion());
     }
-
 }
 
+}
 
 
 
@@ -55,7 +81,7 @@ echo $template->render([
     'hotes' =>  $arrayNewHost,
     'pollers' => $centreon->getPollerName(),
     'template' => $centreon->getTemplateName(),
-    'community' => $_GET['community'],
-    'versionSnmp' => $_GET['version'],
+   // 'community' => $_GET['community'],
+    //'versionSnmp' => $_GET['version'],
 
 ]);
