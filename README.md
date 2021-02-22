@@ -95,10 +95,10 @@ Copier les fichiers
 	cd Open-Centreon-Discovery
 	cp -r * /usr/share/discovery
 
-Le fichier config.php devra contenir login/mdp de votre plateforme CES + le nom de votre poller 
+Le fichier config.php devra contenir login/mdp de votre plateforme CES
 
 
-## Scan de votre réseau en backGround
+## Scan de votre réseau en backGround ##
 le scan d'un réseau /16 peut être long, le scan de deux /16 peut être très long !
 
 Open Centreon Discovery peut maintenant analyser votre réseau via une tache cron .
