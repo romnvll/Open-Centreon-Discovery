@@ -12,7 +12,7 @@ $config['centreon']['clapi'] = '/usr/share/centreon/bin/centreon';
 
 
 //activation du scan backGround pour les /16 et plus : true or false
-$config['backGroundScanUse'] = ;
+$config['backGroundScanUse'] = false ;
 //chemin de l'executable scanBackGround
 
 $config['backGroundRoot'] = '/usr/share/discovery';
