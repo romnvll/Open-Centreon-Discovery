@@ -1,10 +1,9 @@
-
 <?php
+require(__DIR__ . '/config.php');
+require(__DIR__ . '/classes/Scan.class.php');
+require(__DIR__ . '/classes/Centreon.class.php');
 
-require('classes/Scan.class.php');
-require('classes/Centreon.class.php');
 
-require('config.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
@@ -13,7 +12,9 @@ $centreonHost = new Centreon();
 $getIpCentreonHost = $centreonHost->getIpHost();
 //Création d'un fichier pour stocker le resultat du scan
 
-$resultFile = fopen("resultScan", "w+") or die("Unable to open file!");
+$file=__DIR__."/resultScan";
+
+$resultFile = fopen($file, "w+") or die("Unable to open file!");
 fwrite($resultFile,"nom_serveur,ip,community,os,snmpVersion" );
 fwrite($resultFile,"\n");
 

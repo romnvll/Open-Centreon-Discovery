@@ -15,7 +15,7 @@ private $clapi;
 	function __construct($hostName=null,$template=null,$templateApps1=null,$templateApps2=null,$ip=null,$community=null,$os=null,$snmpVersion=null,$poller=null) {
 
 		parent::__construct($hostName,$ip,$community,$os,$snmpVersion);
-	include ('config.php');
+	include (__DIR__.'/../config.php');
 	$this->user = $config['centreon']['user'];
 	$this->password = $config['centreon']['password'];
     $this->clapi = $config['centreon']['clapi'];
