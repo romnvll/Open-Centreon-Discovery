@@ -1,5 +1,4 @@
 <?php
-
 //Vos identifiants centreon
 $config['centreon']['user'] = 'admin';
 $config['centreon']['password'] = 'admin';
