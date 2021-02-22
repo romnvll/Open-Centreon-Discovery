@@ -98,3 +98,35 @@ Copier les fichiers
 Le fichier config.php devra contenir login/mdp de votre plateforme CES + le nom de votre poller 
 
 
+## Scan de votre réseau en backGround
+le scan d'un réseau /16 peut être long, le scan de deux /16 peut être très long !
+
+Open Centreon Discovery peut maintenant analyser votre réseau via une tache cron .
+Le résultat est envoyé dans un fichier csv .
+
+**Pour activer le scan en arrière plan :**
+Dans le fichier config.php, on passe la variable 
+```
+$config['backGroundScanUse'] = true;
+
+```
+
+puis on ajoute les réseaux que l'on veut scruter ex :
+
+```
+$config['backGroundScan'][0] = array("network" => "192.168.4.0/24",
+                                    "community"=>"public",
+                                    "version"=>"2" );
+
+$config['backGroundScan'][1] = array("network" => "192.168.14.0/24",
+                                     "community"=>"public",
+                                    "version"=>"2" );
+```
+
+On cron le fichier ScanBackGround.php
+
+  5  *  *  *  * root /opt/rh/rh-php72/root/bin/php /usr/share/discovery/backGroundScan.php
+
+
+
+
