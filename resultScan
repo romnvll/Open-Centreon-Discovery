@@ -4,5 +4,6 @@ SRVADM.intranet.int,192.168.4.126,public,Windows,2
 SRVAURION2.intranet.int,192.168.4.151,public,Windows,2
 CS-SAN,192.168.4.161,public,Unknown,2
 SRVTSE.intranet.int,192.168.4.211,public,Windows,2
+NPI7C8DCD,192.168.14.6,public,Unknown,2
 "RNP583879256DC5",192.168.14.29,public,Ricoh,2
 centreon,192.168.14.149,public,Linux,2
