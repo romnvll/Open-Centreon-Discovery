@@ -25,11 +25,10 @@
 
 						<h1 class="h3 mb-3 font-weight-normal">Scanner votre reseau en SNMP</h1>
 
-						<label for="inputEmail" class="sr-only">Centreon Login</label>
 						<input type="text" class="form-control" name="hostNetwork" placeholder="network ex: 192.168.4.0/24">
 						<label for="inputPassword" class="sr-only">Password</label>
 						<input type="text" class="form-control" name="community" id="community" placeholder="La communaut&#233;">
-						<br>
+						
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
 								<label class="input-group-text" for="inputGroupSelect01">Version SNMP</label>
@@ -55,8 +54,7 @@
 							              Si le timeout est trop bas, il se peut que le scan ne detecte pas d'agent SNMP.
 
 						</small>
-						<br>
-
+					
 
 						<button class="btn btn-lg btn-primary btn-block" type="submit">Scan</button>
 
@@ -71,7 +69,8 @@
 			{% if backGround == true %}
 				<div class="col-sm">
 
-					<p>Date du dernier scan back ground :<br><b>{{ date }}</b><p><br>
+					<p class="font-weight-light">Date du dernier scan back ground :{{ date }}<p>
+					<p class="font-weight-bold"> {{ nbr_hote }} </p> <p class="font-weight-light">hotes trouvés</p>
           <ul class="list-group">
 					{% for hote in hotes %}
 						 <li class="list-group-item list-group-item-success">
@@ -79,7 +78,7 @@
 					{% endfor %}
           </ul>
 					<a href="step1.php?backGroundScan=true" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Go</a>
-					<br>
+					
 				</div>
 			{% endif %}
 

@@ -27,13 +27,15 @@ if (!$_SESSION['isAdmin']) {
 $filename = 'resultScan';
 $date = date("d-m-y H:i:s.", filemtime($filename));
 $csv = new CsvImporter('resultScan',",");
-
-
+$csv2 =  new CsvImporter('resultScan',",");
+$nbr_hote =  sizeof($csv2->get());
+$hotes = $csv->get();
 
 $template = $twig->load('index.twig');
 echo $template->render([
   'backGround' => $config['backGroundScanUse'],
   'date' => $date,
-  'hotes' =>  $csv->get(),
+  'hotes' =>  $hotes,
+  'nbr_hote' => $nbr_hote,
 
 ]);
