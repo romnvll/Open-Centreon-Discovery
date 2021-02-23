@@ -1,8 +1,16 @@
 <?php
+/*
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 snmp_set_quick_print(1);
 error_reporting(E_ALL);
+*/
+session_start();
+if (!$_SESSION['isAdmin']) {
+
+	header('Location: login.php');
+	exit();
+}
 require('classes/Scan.class.php');
 require('classes/Centreon.class.php');
 include('vendor/autoload.php');

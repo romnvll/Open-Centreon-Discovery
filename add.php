@@ -1,8 +1,13 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+session_start();
+if (!$_SESSION['isAdmin']) {
+
+	header('Location: login.php');
+	exit();
+}
 require ('classes/Hosts.class.php');
 require ('classes/Centreon.class.php');
 
@@ -33,9 +38,7 @@ if ($_GET['method'] == "applyandreload") {
 	}
 	
  
-	//header( "refresh:3;url=index.php" );
+	
 
 	
 }
-
-?>
