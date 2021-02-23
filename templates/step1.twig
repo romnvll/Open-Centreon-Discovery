@@ -6,6 +6,7 @@
 		<script src="js/sendData.js"></script>
 		<script src="js/jquery-3.5.1.min.js"></script>
 		<script src="js/mutlipleselection.js"></script>
+		<script src="js/autoTemplate.js"></script>
 
 		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
@@ -36,17 +37,20 @@
 					<thead>
 
 						<tr>
+						
 							<th><input type="checkbox" value="" id="selectAll"></th>
 							<th>Serveur</th>
 							<th>Os</th>
 							<th>ip</th>
 							<th>
-								<select class="custom-select" id="selectTpl">
+								<!-- <select class="custom-select" id="selectTpl">
 									<option selected>Choisir un tpl</option>
-									{% for templates in template  %}
+									{# for templates in template  %}
 										<option>{{ templates }}</option>
-									{% endfor %}
+									{% endfor #}
 								</select>
+								-->
+								<button type="button" class="btn btn-primary" onclick="autoTemplate()">Magie!</button>
 							</th>
 							<th>Tpl 1</th>
 							<th>Tpl 2</th>
