@@ -65,6 +65,8 @@ class Scan
                     $os = "Dell Networking";
                 } elseif (stripos($os, "VMware") !== false) {
                     $os = "VMWare";
+                } elseif (stripos($os, "LaserJet") !== false) {
+                    $os = "HP LaserJet";
                 } else {
                     $os = "Unknown";
                 }
@@ -72,9 +74,11 @@ class Scan
                 
                 if ($os == "Ricoh"){
                     $hostname = $snmp->get(".1.3.6.1.4.1.367.3.2.1.7.2.4.5.0");
+                    $hostname = preg_replace("/STRING: /i",'',$hostname);
                 }
                 else {
-                    $hostname = @$snmp->get("1.3.6.1.2.1.1.5.0");
+                    $hostname = $snmp->get("1.3.6.1.2.1.1.5.0");
+                    $hostname = preg_replace("/STRING: /i",'',$hostname);
 
                 }
                

@@ -40,10 +40,8 @@ foreach ($config['backGroundScan'] as $value) {
                   
                   if ($trouve == false) {
                       
-                     //$arrayNewHost[] = new host($host->getHostName(), $host->getIP(), $host->getCommunity(), $host->getOs(), $host->getSnmpVersion());
-                     $hostname=preg_replace("/STRING: /i",'',$host->getHostName()) ;
-                            
-                      fwrite($resultFile,$hostname ) ;
+                                     
+                      fwrite($resultFile,$host->getHostName() ) ;
                       fwrite($resultFile,",");
                       fwrite($resultFile,$host->getIP() ) ; 
                       fwrite($resultFile,",");

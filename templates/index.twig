@@ -70,7 +70,7 @@
 				<div class="col-sm">
 
 					<p class="font-weight-light">Date du dernier scan back ground :{{ date }}<p>
-					<p class="font-weight-bold"> {{ nbr_hote }} </p> <p class="font-weight-light">hotes trouvés</p>
+					<p class="font-weight-bold"> {{ hotes|length }} </p> <p class="font-weight-light">hotes trouvés</p>
           <ul class="list-group">
 					{% for hote in hotes %}
 						 <li class="list-group-item list-group-item-success">
