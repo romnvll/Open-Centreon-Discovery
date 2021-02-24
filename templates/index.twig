@@ -65,7 +65,8 @@
 			</div>
 
 
-			{% if backGround == true %}
+			{% if backGround == true %} 
+				{% if file == true %}
 				<div class="col-6">
 
 					<p class="font-weight-light">Date du dernier scan back ground :{{ date }}</p>
@@ -85,6 +86,11 @@
 					<a href="step1.php?backGroundScan=true" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Go</a>
 
 				</div>
+				{% endif %}
+					<p class="font-weight-bold">Le cron n'a pas encore lancer de tache<br> le proprietaire du fichier resulScan doit être apache <br> Veuillez patienter ...</p>
+				{% if file == false %}
+
+				{%  endif  %}
 			{% endif %}
 
 

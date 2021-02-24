@@ -23,18 +23,26 @@ if (!$_SESSION['isAdmin']) {
   exit();
 }
 
+if ( !file_exists("resultScan")) {
+ $file = false;
+ $date = false;
+ $hotes = false;
+}
 
+else {
+$file = true;
 $filename = 'resultScan';
 $date = date("d-m-y H:i:s.", filemtime($filename));
 $csv = new CsvImporter('resultScan',",");
 
 $hotes = $csv->get();
-
+}
 $template = $twig->load('index.twig');
 echo $template->render([
   'backGround' => $config['backGroundScanUse'],
   'date' => $date,
   'hotes' =>  $hotes,
+  'file' => $file
   
 
 ]);
