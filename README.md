@@ -1,5 +1,14 @@
 # Open Centreon Discovery
 
+
+### Nouveauté du 24/02 ###
+Ajout d'un bouton Magie !, ce bouton permet de detecter l'os et d'y appliquer automatiquement un template .
+
+il est possible de completer un mappage dans le fichier js/autoTemplate.js :
+
+exemple: pour les OS non reconnu, on applique le template generic-host :
+ map.set ("Unknown", "generic-host")
+
 ### Nouveauté du 22/02 ###
 
 Possibilité de faire du scan de votre réseau en arriere plan
