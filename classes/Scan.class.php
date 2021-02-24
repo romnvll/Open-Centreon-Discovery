@@ -66,8 +66,12 @@ class Scan
                 } elseif (stripos($os, "VMware") !== false) {
                     $os = "VMWare";
                 } elseif (stripos($os, "LaserJet") !== false) {
-                    $os = "HP LaserJet";
-                } else {
+                    $os = "HP LaserJet";                } 
+                elseif (stripos($os, "HiveOS") !== false) {
+                    $os = "Aerohive";
+                }
+                
+                else {
                     $os = "Unknown";
                 }
 
