@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <script src="js/bootstrap.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="js/bootstrap.min.js"></script>
 <!-- Custom styles for this template -->
@@ -10,14 +10,14 @@
 <script src="http:////cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-<form action="step1.php" method="get">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm">
+<div class="container mt-auto">
 
+	<form action="step1.php" method="get">
+		<div class="row">
+			<div class="col-5">
 				<body class="text-center">
 					<form class="form-signin" action="verif.php" method="POST">
-						<svg width="72" height="72" viewbox="0 0 16 16" class="bi bi-hdd-network" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<svg width="100" height="100" viewbox="0 0 16 16" class="bi bi-hdd-network" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd" d="M14 3H2a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
 							<path d="M5 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
 							<path fill-rule="evenodd" d="M7.5 10V7h1v3a1.5 1.5 0 0 1 1.5 1.5h5.5a.5.5 0 0 1 0 1H10A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5H.5a.5.5 0 0 1 0-1H6A1.5 1.5 0 0 1 7.5 10zm0 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
@@ -28,7 +28,7 @@
 						<input type="text" class="form-control" name="hostNetwork" placeholder="network ex: 192.168.4.0/24">
 						<label for="inputPassword" class="sr-only">Password</label>
 						<input type="text" class="form-control" name="community" id="community" placeholder="La communaut&#233;">
-						
+
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
 								<label class="input-group-text" for="inputGroupSelect01">Version SNMP</label>
@@ -51,10 +51,10 @@
 						</div>
 						<small id="Help timeout" class="form-text text-muted">
 							Si le scan est trop long, essayez de baisser ce timeout .
-							              Si le timeout est trop bas, il se peut que le scan ne detecte pas d'agent SNMP.
+																												              Si le timeout est trop bas, il se peut que le scan ne detecte pas d'agent SNMP.
 
 						</small>
-					
+
 
 						<button class="btn btn-lg btn-primary btn-block" type="submit">Scan</button>
 
@@ -67,18 +67,24 @@
 
 
 			{% if backGround == true %}
-				<div class="col-sm">
+				<div class="col-6">
 
-					<p class="font-weight-light">Date du dernier scan back ground :{{ date }}<p>
-					<p class="font-weight-bold"> {{ hotes|length }} </p> <p class="font-weight-light">hotes trouvés</p>
-          <ul class="list-group">
+					<p class="font-weight-light">Date du dernier scan back ground :{{ date }}</p>
+
+					<button type="button" class="btn btn-primary">
+						hote(s) trouvé(s)
+						<span class="badge badge-light">{{ hotes|length }}</span>
+					</button>
+
 					{% for hote in hotes %}
-						 <li class="list-group-item list-group-item-success">
-							{{ hote.ip }}	-	{{ hote.nom_serveur }} - {{ hote.community }}</li>
+						<p class="text-center"></p>
+						<h6>{{ hote.ip }}-{{ hote.nom_serveur }}
+							<span class="badge badge-success">New</span>
+						</h6>
 					{% endfor %}
-          </ul>
+
 					<a href="step1.php?backGroundScan=true" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Go</a>
-					
+
 				</div>
 			{% endif %}
 
