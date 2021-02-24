@@ -27,6 +27,8 @@ $config['backGroundScan'][1] = array("network" => "192.168.14.0/24",
                                      "community"=>"public",
                                     "version"=>"2" );
 
-
+$config['backGroundScan'][2] = array("network" => "192.168.92.0/24",
+                                     "community"=>"hivecommunity",
+                                   "version"=>"2" );
 
 ?>

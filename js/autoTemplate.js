@@ -1,3 +1,4 @@
+
 function autoTemplate() {
 
     let  lignes = document.getElementById("tableau").getElementsByTagName("tbody")[0].getElementsByTagName("tr");
