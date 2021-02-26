@@ -2,7 +2,7 @@
 
 
 ### Nouveauté du 24/02 ###
-Ajout d'un bouton Magie !, ce bouton permet de detecter l'os et d'y appliquer automatiquement un template .
+Ajout d'un bouton Magie ! Ce bouton permet de detecter l'os et d'y appliquer automatiquement un template .
 
 il est possible de completer un mappage dans le fichier js/autoTemplate.js :
 
