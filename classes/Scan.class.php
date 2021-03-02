@@ -66,6 +66,14 @@ class Scan
                     $os = "Dell Networking";
                 } elseif (stripos($os, "VMware") !== false) {
                     $os = "VMWare";
+                } elseif (stripos($os, "3Com") !== false) {
+                    $os = "Switch 3Com";
+                } elseif (stripos($os, "DGS-1100") !== false) {
+                    $os = "Switch Dlink";
+                } elseif (stripos($os, "SF302") !== false) {
+                    $os = "Cisco Small Business";
+                } elseif (stripos($os, "Brother ") !== false) {
+                    $os = "Brother Printer";
                 } elseif (stripos($os, "LaserJet") !== false) {
                     $os = "HP LaserJet";                } 
                 elseif (stripos($os, "HiveOS") !== false) {
