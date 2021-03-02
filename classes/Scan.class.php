@@ -37,7 +37,8 @@ class Scan
         $arrayhostLan=array();
         
         while ($this->startipLong <= $this->endipLong) {
-
+            usleep(10*1000);
+            
             $ip = long2ip($this->startipLong++);
             
             
