@@ -1,5 +1,6 @@
 # Open Centreon Discovery
-
+### Correction de bugs 02/03 ###
+Correction d'un bug qui affectait le bouton magie et les majuscules dans le nom des templates. Merci à M Coquard pour les tests !
 
 ### Nouveautés du 24/02 ###
 Ajout d'un bouton Magie ! Ce bouton permet de detecter l'os et d'y appliquer automatiquement un template .
