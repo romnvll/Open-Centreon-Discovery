@@ -18,6 +18,8 @@ Projet de découverte automatique pour centreon testé sur CES 19.10.
 
 Documentation se trouve ici
 [https://www.sugarbug.fr/atelier/techniques/ihmweb/open-centreon-discovery/](https://www.sugarbug.fr/atelier/techniques/ihmweb/open-centreon-discovery/)
+
 et là 
+
 [https://github.com/romnvll/Open-Centreon-Discovery/wiki](https://github.com/romnvll/Open-Centreon-Discovery/wiki)
 
