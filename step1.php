@@ -59,6 +59,7 @@ else {
 
 $scan = new Scan($_GET['hostNetwork'], $_GET['community'], $_GET['version'], $_GET['timeout']);
 $scan = $scan->Scan();
+
 // merci seb !
 foreach ($scan as $hote) {
 
@@ -70,9 +71,10 @@ foreach ($scan as $hote) {
             break;
         }
     }
-
+    
     if ($trouve == false) {
-        $arrayNewHost[] = new host($hote->getHostName(), $hote->getIP(), $hote->getCommunity(), $hote->getOs(), $hote->getSnmpVersion());
+        
+        $arrayNewHost[] = new host($hote->getHostName(), $hote->getIP(), $hote->getCommunity(), $hote->getOs(), $hote->getSnmpVersion(),$hote->getServices());
     }
 }
 

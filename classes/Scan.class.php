@@ -34,21 +34,23 @@ class Scan
     public function Scan(): array
     {
 
-        $arrayhostLan=array();
-        
+        $arrayhostLan = array();
+
         while ($this->startipLong <= $this->endipLong) {
-            usleep(10*1000);
-            
+            usleep(10 * 1000);
+
             $ip = long2ip($this->startipLong++);
-            
-            
+
+
             if ($this->snmpVersion == "2") {
-                $snmp = new SNMP(SNMP::VERSION_2C, $ip, $this->community, $this->snmpTimeOut, 1);
+                $snmp = new SNMP(SNMP::VERSION_2C, $ip, $this->community, $this->snmpTimeOut, 5);
+                $snmp->valueretrieval = SNMP_VALUE_PLAIN;
             }
             if ($this->snmpVersion == 1) {
                 $snmp = new SNMP(SNMP::VERSION_1, $ip, $this->community, $this->snmpTimeOut, 1);
+                $snmp->valueretrieval = SNMP_VALUE_PLAIN;
             }
-            
+
             //si la machine repond en SNMP, on creer un tableau d'ip pour la comparaison et un tableau d'hote
             if (@$snmp->get("sysDescr.0")) {
 
@@ -75,42 +77,57 @@ class Scan
                 } elseif (stripos($os, "Brother ") !== false) {
                     $os = "Brother Printer";
                 } elseif (stripos($os, "LaserJet") !== false) {
-                    $os = "HP LaserJet";                } 
-                elseif (stripos($os, "HiveOS") !== false) {
+                    $os = "HP LaserJet";
+                } elseif (stripos($os, "HiveOS") !== false) {
                     $os = "Aerohive";
-                }
-                
-                else {
+                } elseif (stripos($os, "Dell EMC Networking") !== false) {
+                    $os = "Dell-Networking";
+                } else {
                     $os = "Unknown";
                 }
 
-                
-                if ($os == "Ricoh"){
-                    $hostname = $snmp->get(".1.3.6.1.4.1.367.3.2.1.7.2.4.5.0");
-                    $hostname = preg_replace("/STRING: /i",'',$hostname);
-                }
-                else {
-                    $hostname = $snmp->get("1.3.6.1.2.1.1.5.0");
-                    $hostname = preg_replace("/STRING: /i",'',$hostname);
 
+                if ($os == "Ricoh") {
+                    $hostname = $snmp->get(".1.3.6.1.4.1.367.3.2.1.7.2.4.5.0");
+                    $hostname = preg_replace("/STRING: /i", '', $hostname);
+                } else {
+                    $hostname = $snmp->get("1.3.6.1.2.1.1.5.0");
+                    $hostname = preg_replace("/STRING: /i", '', $hostname);
                 }
-               
-               $hostLan = new HostLan($hostname, $ip, $this->community,$os, $this->snmpVersion);
-               
-             
-              array_push($arrayhostLan,$hostLan);                      
+
+                //detection des services.
+                require 'config.php';
+                if ($os == "Windows" || $os == "Linux") {
+
+                    $servicesSNMP = $snmp->walk("1.3.6.1.2.1.25.4.2.1.2");
+                    $serviceNameUnique = array_unique($servicesSNMP);
+                    $services = array();
+
+                    foreach ($config['service'] as $service => $value) {
+
+                        foreach ($serviceNameUnique as $serviceSNMP) {
+
+                            if ($serviceSNMP == $service) {
+                                $services[] = $value;
+                            }
+                        }
+                    }
+                }
+
+                //fin detection service
+                //var_dump($services);
+                $hostLan = new HostLan($hostname, $ip, $this->community, $os, $this->snmpVersion, $services);
                 
+
+                array_push($arrayhostLan, $hostLan);
             }
-            
         }
-        
+
         return  $arrayhostLan;
     }
 
-    public function getIpScanner() :array {
+    public function getIpScanner(): array
+    {
         return $this->ipScanner;
     }
-
- 
-
 }

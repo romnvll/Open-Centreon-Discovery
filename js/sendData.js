@@ -17,14 +17,14 @@ function f1(){
             json.nom_serveur=l.getElementsByTagName("td")[1].children[0].innerText
             json.os=l.getElementsByTagName("td")[2].innerText
             json.ip=l.getElementsByTagName("td")[3].innerText
-            json.hostTemplate=l.getElementsByTagName("td")[4].children[0].value
-            json.appsTemplate1=l.getElementsByTagName("td")[5].children[0].value
-            json.appsTemplate2=l.getElementsByTagName("td")[6].children[0].value
-            json.poller=l.getElementsByTagName("td")[7].children[0].value
-            json.community=l.getElementsByTagName("td")[8].innerText
-            json.snmpVersion=l.getElementsByTagName("td")[9].innerText
+            json.hostTemplate=l.getElementsByTagName("td")[5].children[0].firstChild.value
+            json.appsTemplate1=l.getElementsByTagName("td")[6].children[0].firstChild.value
+            json.appsTemplate2=l.getElementsByTagName("td")[7].children[0].firstChild.value
+            json.poller=l.getElementsByTagName("td")[8].children[0].firstChild.value
+            json.community=l.getElementsByTagName("td")[9].innerText
+            json.snmpVersion=l.getElementsByTagName("td")[10].innerText
             
-       
+            
             json_global[indice++]=json;
            }
            

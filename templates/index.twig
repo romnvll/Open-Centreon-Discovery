@@ -1,21 +1,37 @@
-<link rel="stylesheet" href="css/bootstrap.css">
-<script src="js/bootstrap.js"></script>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="js/bootstrap.min.js"></script>
-<!-- Custom styles for this template -->
-<link href="css/customsignin.css" rel="stylesheet">
-<script src="js/jquery-3-5-1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> 
+
+
+<!-- <script src="js/bootstrap.min.js"></script> -->
+
+<script src="js/jquery-3.5.1.min.js"></script>
+
 
 
 <div class="container mt-auto">
+	
 
-	<form action="step1.php" method="get">
+<nav class="navbar navbar-expand-lg navbar-light">
+     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+         
+        <a href="logout.php" class="btn btn-light">
+          Log out
+        </a>
+     
+        </ul>
+    </div>
+  
+</nav>
+
+	
+	
 		<div class="row">
+		
 			<div class="col-5">
 				<body class="text-center">
-					<form class="form-signin" action="verif.php" method="POST">
+					<form action="step1.php" method="get">
 						<svg width="100" height="100" viewbox="0 0 16 16" class="bi bi-hdd-network" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd" d="M14 3H2a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
 							<path d="M5 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
@@ -50,7 +66,7 @@
 						</div>
 						<small id="Help timeout" class="form-text text-muted">
 							Si le scan est trop long, essayez de baisser ce timeout .
-																												              Si le timeout est trop bas, il se peut que le scan ne detecte pas d'agent SNMP.
+																																			              Si le timeout est trop bas, il se peut que le scan ne detecte pas d'agent SNMP.
 
 						</small>
 
@@ -65,35 +81,38 @@
 			</div>
 
 
-			{% if backGround == true %} 
+			{% if backGround == true %}
 				{% if file == true %}
-				<div class="col-6">
+					<div class="col-6 mt-2">
 
-					<p class="font-weight-light">Date du dernier scan back ground :{{ date }}</p>
+						<p class="font-weight-light">Date du dernier scan back ground :{{ date }}</p>
 
-					<button type="button" class="btn btn-primary">
-						hote(s) trouvé(s)
-						<span class="badge badge-light">{{ hotes|length }}</span>
-					</button>
+						<button type="button" class="btn btn-primary">
+							hote(s) trouvé(s)
+							<span class="badge badge-light">{{ hotes|length }}</span>
+						</button>
 
-					{% for hote in hotes %}
-						<p class="text-center"></p>
-						<h6>{{ hote.ip }}-{{ hote.nom_serveur }}
-							<span class="badge badge-success">New</span>
-						</h6>
-					{% endfor %}
+						{% for hote in hotes %}
+							<p class="text-center"></p>
+							<h6>{{ hote.ip }}-{{ hote.nom_serveur }}
+								<span class="badge badge-success">New</span>
+							</h6>
+						{% endfor %}
 
-					<a href="step1.php?backGroundScan=true" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Go</a>
+						<a href="step1.php?backGroundScan=true" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Go</a>
 
-				</div>
+					</div>
 				{% endif %}
-					
+
 				{% if file == false %}
-					<p class="font-weight-bold">Le cron n'a pas encore lancer de tache<br> le proprietaire du fichier resulScan doit être apache <br> Veuillez patienter ...</p>
+					<p class="font-weight-bold">Le cron n'a pas encore lancer de tache<br>
+						le proprietaire du fichier resulScan doit être apache
+						<br>
+						Veuillez patienter ...</p>
 				{%  endif  %}
 			{% endif %}
 
 
 		</div>
-		</form>
-	</container>
+	</form>
+</container>

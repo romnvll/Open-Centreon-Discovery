@@ -31,4 +31,18 @@ $config['backGroundScan'][2] = array("network" => "192.168.92.0/24",
                                      "community"=>"hivecommunity",
                                    "version"=>"2" );
 
+/*
+Detection des services sur un hôte
+*/
+ $config['service']['httpd'] = "HttpApache";     
+ $config['service']['sshd'] = "OpenSSH";                               
+ $config['service']['dns.exe'] = "Dns";
+ $config['service']['sqlservr.exe'] = "SqlServer"; 
+ $config['service']['TmListen.exe'] = "OracleServer";
+ $config['service']['postgres.exe'] = "PostgresServer"; 
+ $config['service']['WsusService.exe'] = "WindowsWsus"; 
+ $config['service']['w3wp.exe'] = "HttpIIS";
+ $config['service']['mysqld'] = "MysqlServer";
+
+ 
 ?>

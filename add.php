@@ -33,9 +33,11 @@ if ($_GET['method'] == "applyandreload") {
 
 		$centreon = new Centreon($host->nom_serveur,$host->hostTemplate,$host->appsTemplate1,$host->appsTemplate2,$host->ip,$host->community,null,$host->snmpVersion,$host->poller);
 		$centreon->addhost($centreon);
-		$centreon->applyCfg($centreon);
-		header( "refresh:3;url=index.php" );
+		
+		
 	}
+	$centreon->applyCfg($centreon);
+	header( "refresh:3;url=index.php" );
 	
  
 	
