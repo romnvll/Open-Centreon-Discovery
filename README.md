@@ -1,5 +1,6 @@
 # Open Centreon Discovery
-
+### Correction de bugs 02/03 ###
+Correction d'un bug qui affectait le bouton magie et les majuscules dans le nom des templates. Merci à M Coquard pour les tests !
 
 ### Nouveautés du 24/02 ###
 Ajout d'un bouton Magie ! Ce bouton permet de detecter l'os et d'y appliquer automatiquement un template .
@@ -16,5 +17,9 @@ ___
 Projet de découverte automatique pour centreon testé sur CES 19.10.
 
 Documentation se trouve ici
+[https://www.sugarbug.fr/atelier/techniques/ihmweb/open-centreon-discovery/](https://www.sugarbug.fr/atelier/techniques/ihmweb/open-centreon-discovery/)
+
+et là 
 
 [https://github.com/romnvll/Open-Centreon-Discovery/wiki](https://github.com/romnvll/Open-Centreon-Discovery/wiki)
+
