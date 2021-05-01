@@ -1,4 +1,9 @@
 # Open Centreon Discovery
+### Nouveautés du 01/05 ###
+Detection des services tounants sous Windows/Linux.
+Transformation des champs deroulants en champs de recherche 
+Correction d'un bug sur la partie Apply&Reload
+
 ### Correction de bugs 02/03 ###
 Correction d'un bug qui affectait le bouton magie et les majuscules dans le nom des templates. Merci à M Coquard pour les tests !
 
