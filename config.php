@@ -19,16 +19,16 @@ $config['backGroundRoot'] = '/usr/share/discovery';
 
 
 
-$config['backGroundScan'][0] = array("network" => "192.168.4.0/24",
+$config['backGroundScan'][0] = array("network" => "192.168.x.x/24",
                                     "community"=>"public",
                                     "version"=>"2" );
 
-$config['backGroundScan'][1] = array("network" => "192.168.14.0/24",
+$config['backGroundScan'][1] = array("network" => "192.168.x.x/24",
                                      "community"=>"public",
                                     "version"=>"2" );
 
-$config['backGroundScan'][2] = array("network" => "192.168.92.0/24",
-                                     "community"=>"hivecommunity",
+$config['backGroundScan'][2] = array("network" => "192.168.x.x/24",
+                                     "community"=>"AnotherCommunity",
                                    "version"=>"2" );
 
 /*
