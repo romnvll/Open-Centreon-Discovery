@@ -1,6 +1,6 @@
 # Open Centreon Discovery
 ### Nouveautés du 01/05 ###
-Detection des services tounants sous Windows/Linux.
+Détection des services tounants sous Windows/Linux.
 
 Transformation des champs deroulants en champs de recherche 
 
