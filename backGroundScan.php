@@ -15,13 +15,13 @@ $getIpCentreonHost = $centreonHost->getIpHost();
 $file=__DIR__."/resultScan";
 
 $resultFile = fopen($file, "w+") or die("Unable to open file!");
-fwrite($resultFile,"nom_serveur,ip,community,os,snmpVersion" );
+fwrite($resultFile,"nom_serveur,ip,community,os,snmpVersion,services" );
 fwrite($resultFile,"\n");
 
 foreach ($config['backGroundScan'] as $value) {
 
 
-       $scan = new scan($value['network'], $value['community'], $value['version'], 4000);
+       $scan = new scan($value['network'], $value['community'], $value['version'], 7000);
 
        $result = $scan->Scan();
 
@@ -49,7 +49,11 @@ foreach ($config['backGroundScan'] as $value) {
                       fwrite($resultFile,",");                                        
                       fwrite($resultFile,$host->getOs() ) ; 
                       fwrite($resultFile,",");
-                      fwrite($resultFile,$host->getSnmpVersion() ) ;  
+                      fwrite($resultFile,$host->getSnmpVersion() ) ; 
+                      fwrite($resultFile,","); 
+                      fwrite($resultFile,"\""); 
+                      fwrite($resultFile,implode(",", $host->getServices())) ; 
+                      fwrite($resultFile,"\""); 
                       fwrite($resultFile,"\n");   
                      
                   }              

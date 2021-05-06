@@ -8,8 +8,8 @@ error_reporting(E_ALL);
 session_start();
 if (!$_SESSION['isAdmin']) {
 
-	header('Location: login.php');
-	exit();
+    header('Location: login.php');
+    exit();
 }
 require('classes/Scan.class.php');
 require('classes/Centreon.class.php');
@@ -33,13 +33,13 @@ $arrayNewHost = array();
 if (isset($_GET['backGroundScan'])) {
     $csv = new CsvImporter('resultScan', ",");
     $scan = $csv->get();
-   
+
 
     foreach ($scan as $hote) {
 
         $trouve = false;
         foreach ($getIpCentreonHost as $centreonHost) {
-                
+
             if ($centreonHost == $hote["ip"]) {
                 $trouve = true;
                 break;
@@ -47,9 +47,16 @@ if (isset($_GET['backGroundScan'])) {
         }
 
         if ($trouve == false) {
-            $arrayNewHost[] = new host($hote['nom_serveur'], $hote['ip'], $hote['community'], $hote['os'], $hote['snmpVersion']);
+            $i=0;
+            //transfert des services dans un tableau
+            $services = explode(",", $hote["services"]);
+            
+            if ($services[$i++] == "") {
+                $services = null;
+            }
+                $arrayNewHost[] = new host($hote['nom_serveur'], $hote['ip'], $hote['community'], $hote['os'], $hote['snmpVersion'], $services);
+            
         }
-        
     }
 }
 //fin ScanBackGround
@@ -57,27 +64,26 @@ if (isset($_GET['backGroundScan'])) {
 // scan depuis un lancement manuel
 else {
 
-$scan = new Scan($_GET['hostNetwork'], $_GET['community'], $_GET['version'], $_GET['timeout']);
-$scan = $scan->Scan();
+    $scan = new Scan($_GET['hostNetwork'], $_GET['community'], $_GET['version'], $_GET['timeout']);
+    $scan = $scan->Scan();
 
-// merci seb !
-foreach ($scan as $hote) {
+    // merci seb !
+    foreach ($scan as $hote) {
 
-    $trouve = false;
-    foreach ($getIpCentreonHost as $centreonHost) {
+        $trouve = false;
+        foreach ($getIpCentreonHost as $centreonHost) {
 
-        if ($centreonHost == $hote->getIP()) {
-            $trouve = true;
-            break;
+            if ($centreonHost == $hote->getIP()) {
+                $trouve = true;
+                break;
+            }
+        }
+
+        if ($trouve == false) {
+            
+            $arrayNewHost[] = new host($hote->getHostName(), $hote->getIP(), $hote->getCommunity(), $hote->getOs(), $hote->getSnmpVersion(), $hote->getServices());
         }
     }
-    
-    if ($trouve == false) {
-        
-        $arrayNewHost[] = new host($hote->getHostName(), $hote->getIP(), $hote->getCommunity(), $hote->getOs(), $hote->getSnmpVersion(),$hote->getServices());
-    }
-}
-
 }
 
 
@@ -91,7 +97,6 @@ echo $template->render([
     'hotes' =>  $arrayNewHost,
     'pollers' => $centreon->getPollerName(),
     'template' => $centreon->getTemplateName(),
-   // 'community' => $_GET['community'],
-    //'versionSnmp' => $_GET['version'],
+   
 
 ]);

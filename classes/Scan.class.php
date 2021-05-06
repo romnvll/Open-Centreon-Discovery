@@ -96,7 +96,7 @@ class Scan
                 }
 
                 //detection des services.
-                require 'config.php';
+                require(__DIR__ . '/../config.php');
                 if ($os == "Windows" || $os == "Linux") {
 
                     $servicesSNMP = $snmp->walk("1.3.6.1.2.1.25.4.2.1.2");
@@ -113,10 +113,7 @@ class Scan
                         }
                     }
                 }
-
-                //fin detection service
-                //var_dump($services);
-                $hostLan = new HostLan($hostname, $ip, $this->community, $os, $this->snmpVersion, $services);
+                @$hostLan = new HostLan($hostname, $ip, $this->community, $os, $this->snmpVersion, $services);
                 
 
                 array_push($arrayhostLan, $hostLan);
