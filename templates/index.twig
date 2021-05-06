@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> 
+<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 
 <!-- <script src="js/bootstrap.min.js"></script> -->
@@ -10,109 +10,124 @@
 
 
 <div class="container mt-auto">
-	
 
-<nav class="navbar navbar-expand-lg navbar-light">
-     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-         
-        <a href="logout.php" class="btn btn-light">
-          Log out
-        </a>
-     
-        </ul>
-    </div>
-  
-</nav>
 
-	
-	
-		<div class="row">
-		
-			<div class="col-5">
-				<body class="text-center">
-					<form action="step1.php" method="get">
-						<svg width="100" height="100" viewbox="0 0 16 16" class="bi bi-hdd-network" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd" d="M14 3H2a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
-							<path d="M5 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
-							<path fill-rule="evenodd" d="M7.5 10V7h1v3a1.5 1.5 0 0 1 1.5 1.5h5.5a.5.5 0 0 1 0 1H10A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5H.5a.5.5 0 0 1 0-1H6A1.5 1.5 0 0 1 7.5 10zm0 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
-						</svg>
+	<nav class="navbar navbar-expand-lg navbar-light">
+		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+			<ul class="navbar-nav ml-auto">
 
-						<h1 class="h3 mb-3 font-weight-normal">Scanner votre reseau en SNMP</h1>
+				<a href="logout.php" class="btn btn-light">
+					Log out
+				</a>
 
-						<input type="text" class="form-control" name="hostNetwork" placeholder="network ex: 192.168.4.0/24">
-						<label for="inputPassword" class="sr-only">Password</label>
-						<input type="text" class="form-control" name="community" id="community" placeholder="La communaut&#233;">
+			</ul>
+		</div>
 
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text" for="inputGroupSelect01">Version SNMP</label>
-							</div>
-							<select class="custom-select" id="inputGroupSelect01" name="version">
+	</nav>
 
-								<option value="1">1</option>
-								<option selected value="2">2c</option>
 
-							</select>
 
+	<div class="row">
+
+		<div class="col-5">
+
+			<body class="text-center">
+				<form action="step1.php" method="get">
+					<svg width="100" height="100" viewbox="0 0 16 16" class="bi bi-hdd-network" fill="currentColor"
+						xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd"
+							d="M14 3H2a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z" />
+						<path d="M5 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+						<path fill-rule="evenodd"
+							d="M7.5 10V7h1v3a1.5 1.5 0 0 1 1.5 1.5h5.5a.5.5 0 0 1 0 1H10A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5H.5a.5.5 0 0 1 0-1H6A1.5 1.5 0 0 1 7.5 10zm0 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
+					</svg>
+
+					<h1 class="h3 mb-3 font-weight-normal">Scanner votre reseau en SNMP</h1>
+
+					<input type="text" class="form-control" name="hostNetwork" placeholder="network ex: 192.168.4.0/24">
+					<label for="inputPassword" class="sr-only">Password</label>
+					<input type="text" class="form-control" name="community" id="community"
+						placeholder="La communaut&#233;">
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="inputGroupSelect01">Version SNMP</label>
 						</div>
+						<select class="custom-select" id="inputGroupSelect01" name="version">
 
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text" for="inputGroupSelect01">Timeout SNMP</label>
-							</div>
-							<input type="text" class="form-control" placeholder="timeout" value="6000" name="timeout">
+							<option value="1">1</option>
+							<option selected value="2">2c</option>
 
-						</div>
-						<small id="Help timeout" class="form-text text-muted">
-							Si le scan est trop long, essayez de baisser ce timeout .
-																																			              Si le timeout est trop bas, il se peut que le scan ne detecte pas d'agent SNMP.
-
-						</small>
-
-
-						<button class="btn btn-lg btn-primary btn-block" type="submit">Scan</button>
-
-
-						<p class="mt-5 mb-3 text-muted">Open Centreon Host Discovery</p>
-
-					</form>
-				</body>
-			</div>
-
-
-			{% if backGround == true %}
-				{% if file == true %}
-					<div class="col-6 mt-2">
-
-						<p class="font-weight-light">Date du dernier scan back ground :{{ date }}</p>
-
-						<button type="button" class="btn btn-primary">
-							hote(s) trouvé(s)
-							<span class="badge badge-light">{{ hotes|length }}</span>
-						</button>
-
-						{% for hote in hotes %}
-							<p class="text-center"></p>
-							<h6>{{ hote.ip }}-{{ hote.nom_serveur }}
-								<span class="badge badge-success">New</span>
-							</h6>
-						{% endfor %}
-
-						<a href="step1.php?backGroundScan=true" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Go</a>
+						</select>
 
 					</div>
-				{% endif %}
 
-				{% if file == false %}
-					<p class="font-weight-bold">Le cron n'a pas encore lancer de tache<br>
-						le proprietaire du fichier resulScan doit être apache
-						<br>
-						Veuillez patienter ...</p>
-				{%  endif  %}
-			{% endif %}
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="inputGroupSelect01">Timeout SNMP</label>
+						</div>
+						<input type="text" class="form-control" placeholder="timeout" value="6000" name="timeout">
 
+					</div>
+					<small id="Help timeout" class="form-text text-muted">
+						Si le scan est trop long, essayez de baisser ce timeout .
+						Si le timeout est trop bas, il se peut que le scan ne detecte pas d'agent SNMP.
+
+					</small>
+
+
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Scan</button>
+
+
+					<p class="mt-5 mb-3 text-muted">Open Centreon Host Discovery</p>
+
+				</form>
+			</body>
+		</div>
+
+
+		{% if backGround == true %}
+		{% if file == true %}
+		<div class="col-6 mt-2">
+			<button type="button" class="btn btn-primary">
+				hote(s) trouvé(s)
+				<span class="badge badge-light">{{ hotes|length }}</span>
+			</button>
+			<table class="table table-sm">
+				<caption>Date du dernier scan back ground :{{ date }}</caption>
+				<thead>
+					<tr>
+						<th scope="col">Ip</th>
+						<th scope="col">Nom</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for hote in hotes %}
+					<tr>
+						<td>{{ hote.ip }}</td>
+						<td>{{ hote.nom_serveur }}</td>
+						<td><span class="badge badge-success">New</span></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<a href="step1.php?backGroundScan=true" class="btn btn-primary btn-lg active" role="button"
+				aria-pressed="true">Go</a>
 
 		</div>
+		{% endif %}
+
+		{% if file == false %}
+		<p class="font-weight-bold">Le cron n'a pas encore lancer de tache<br>
+			le proprietaire du fichier resulScan doit être apache
+			<br>
+			Veuillez patienter ...
+		</p>
+		{% endif %}
+		{% endif %}
+
+
+	</div>
 	</form>
-</container>
+	</container>

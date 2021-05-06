@@ -82,6 +82,8 @@ class Scan
                     $os = "Aerohive";
                 } elseif (stripos($os, "Dell EMC Networking") !== false) {
                     $os = "Dell-Networking";
+                } elseif (stripos($os, "M5600") !== false) {
+                    $os = "WatchGuard";
                 } else {
                     $os = "Unknown";
                 }
@@ -112,8 +114,13 @@ class Scan
                             }
                         }
                     }
+                    @$hostLan = new HostLan($hostname, $ip, $this->community, $os, $this->snmpVersion, $services);
                 }
-                @$hostLan = new HostLan($hostname, $ip, $this->community, $os, $this->snmpVersion, $services);
+                else {
+                    @$hostLan = new HostLan($hostname, $ip, $this->community, $os, $this->snmpVersion, null);
+                }
+               
+                
                 
 
                 array_push($arrayhostLan, $hostLan);
