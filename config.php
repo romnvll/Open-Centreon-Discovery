@@ -7,9 +7,7 @@ $config['centreon']['password'] = 'admin';
 $config['centreon']['clapi'] = '/usr/share/centreon/bin/centreon';
 
 
-//pour le scan BackGround
-
-
+//Scan BackGround
 
 //activation du scan backGround pour les /16 et plus : true or false
 $config['backGroundScanUse'] = true ;
