@@ -1,4 +1,7 @@
 # Open Centreon Discovery
+### Correction de bug 06/05 ###
+Correction du scan BackGround
+
 ### Nouveautés du 01/05 ###
 Détection des services tounants sous Windows/Linux.
 
