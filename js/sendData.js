@@ -67,12 +67,12 @@ function f2(methode) {
       }
       let data = JSON.stringify( json_global);
       console.log(JSON.stringify( json_global)) ;
-
+      
       if (methode == 'apply'){
         
         document.getElementById("data").action = "add.php?method=apply";
-        document.getElementById("transmettre").value = data;
-        document.getElementById("data").submit();
+       document.getElementById("transmettre").value = data;
+       document.getElementById("data").submit();
       }
 
       if (methode == 'applyAndReload'){

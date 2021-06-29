@@ -42,7 +42,7 @@ class Scan
             $ip = long2ip($this->startipLong++);
 
 
-            if ($this->snmpVersion == "2") {
+            if ($this->snmpVersion == "2c") {
                 $snmp = new SNMP(SNMP::VERSION_2C, $ip, $this->community, $this->snmpTimeOut, 5);
                 $snmp->valueretrieval = SNMP_VALUE_PLAIN;
             }

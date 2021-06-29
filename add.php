@@ -16,11 +16,12 @@ $centreon = new Centreon();
 if ($_GET['method'] == "apply") {
 	
 		$data = json_decode($_POST['data'],false);
-
+		
 		foreach($data as $host){
 		$centreon = new Centreon($host->nom_serveur,$host->hostTemplate,$host->appsTemplate1,$host->appsTemplate2,$host->ip,$host->community,null,$host->snmpVersion,$host->poller);
 		$centreon->addhost($centreon);
-		header( "refresh:3;url=index.php" );
+		$centreon->setParam($centreon);
+		//header( "refresh:3;url=index.php" );
 
 		
 	}
@@ -33,6 +34,7 @@ if ($_GET['method'] == "applyandreload") {
 
 		$centreon = new Centreon($host->nom_serveur,$host->hostTemplate,$host->appsTemplate1,$host->appsTemplate2,$host->ip,$host->community,null,$host->snmpVersion,$host->poller);
 		$centreon->addhost($centreon);
+		$centreon->setParam($centreon);
 		
 		
 	}
