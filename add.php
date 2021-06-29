@@ -21,7 +21,7 @@ if ($_GET['method'] == "apply") {
 		$centreon = new Centreon($host->nom_serveur,$host->hostTemplate,$host->appsTemplate1,$host->appsTemplate2,$host->ip,$host->community,null,$host->snmpVersion,$host->poller);
 		$centreon->addhost($centreon);
 		$centreon->setParam($centreon);
-		//header( "refresh:3;url=index.php" );
+		header( "refresh:3;url=index.php" );
 
 		
 	}
