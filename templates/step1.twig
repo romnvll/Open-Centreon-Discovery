@@ -62,16 +62,15 @@
 					</thead>
 					<tbody>
 
-
+						
 						{% if hotes|length == 0 %}
 							<div class="alert alert-warning" role="alert">
 								Aucune machine détectée !
 							</div>
 						{% endif %}
-
+							
 						{% for Hosts in hotes %}
-							
-							
+														
 							<tr>
 								<td>
 									<div class="form-check"  data-toggle="tooltip" data-placement="top" title="Selectionner les machines à inserer dans Centreon">

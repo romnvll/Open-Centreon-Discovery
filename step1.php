@@ -80,6 +80,11 @@ else {
         }
 
         if ($trouve == false) {
+            if ($hote->getHostName() == "")  {
+                $hote->setHostname($hote->getIP());
+            }         
+           
+                
             
             $arrayNewHost[] = new host($hote->getHostName(), $hote->getIP(), $hote->getCommunity(), $hote->getOs(), $hote->getSnmpVersion(), $hote->getServices());
         }
@@ -89,7 +94,7 @@ else {
 
 
 // Fin de detection des hotes
-
+//$arrayNewHost = serialize($arrayNewHost);
 
 $template = $twig->load('step1.twig');
 echo $template->render([

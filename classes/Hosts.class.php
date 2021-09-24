@@ -46,6 +46,10 @@ class Host  {
         return $this->services;
     }
 
+    function setHostname($hostName):void {
+        $this->hostName = $hostName;
+    }
+
     
 
     

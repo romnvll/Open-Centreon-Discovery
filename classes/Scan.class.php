@@ -45,6 +45,7 @@ class Scan
             if ($this->snmpVersion == "2c") {
                 $snmp = new SNMP(SNMP::VERSION_2C, $ip, $this->community, $this->snmpTimeOut, 5);
                 $snmp->valueretrieval = SNMP_VALUE_PLAIN;
+                
             }
             if ($this->snmpVersion == 1) {
                 $snmp = new SNMP(SNMP::VERSION_1, $ip, $this->community, $this->snmpTimeOut, 1);
@@ -52,9 +53,10 @@ class Scan
             }
 
             //si la machine repond en SNMP, on creer un tableau d'ip pour la comparaison et un tableau d'hote
-            if (@$snmp->get("sysDescr.0")) {
+            if (@$snmp->get("1.3.6.1.2.1.1.2.0")) {
 
                 $os = $snmp->get("1.3.6.1.2.1.1.1.0");
+                
                 if (stripos($os, "windows") !== false) {
 
                     $os = "Windows";
@@ -84,6 +86,9 @@ class Scan
                     $os = "Dell-Networking";
                 } elseif (stripos($os, "M5600") !== false) {
                     $os = "WatchGuard";
+                } elseif (stripos($os, "SNMPv2-SMI::enterprises.2011.2.23.431") !== false) {
+                    $os = "Huawei";
+                
                 } else {
                     $os = "Unknown";
                 }
