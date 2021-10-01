@@ -1,5 +1,5 @@
 <?php
-//Vos identifiants centreon
+//Vos identifiants centreon ( attention, les caracteres de type $ ou * ne fonctionnent pas avec CLAPI)
 $config['centreon']['user'] = 'admin';
 $config['centreon']['password'] = 'admin';
 

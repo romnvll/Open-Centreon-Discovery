@@ -80,13 +80,15 @@ else {
         }
 
         if ($trouve == false) {
+            //si le snmp ne trouve pas de nom, on mettra alors l'ip comme HOSTNAME
             if ($hote->getHostName() == "")  {
                 $hote->setHostname($hote->getIP());
             }         
            
                 
             
-            $arrayNewHost[] = new host($hote->getHostName(), $hote->getIP(), $hote->getCommunity(), $hote->getOs(), $hote->getSnmpVersion(), $hote->getServices());
+           $arrayNewHost[] = new host($hote->getHostName(), $hote->getIP(), $hote->getCommunity(), $hote->getOs(), $hote->getSnmpVersion(), $hote->getServices());
+           
         }
     }
 }
@@ -94,7 +96,7 @@ else {
 
 
 // Fin de detection des hotes
-//$arrayNewHost = serialize($arrayNewHost);
+//$arrayNewHost = json_encode($arrayNewHost);
 
 $template = $twig->load('step1.twig');
 echo $template->render([

@@ -12,8 +12,10 @@ private $templateApps2;
 private $clapi;
 
 
-	function __construct($hostName=null,$template=null,$templateApps1=null,$templateApps2=null,$ip=null,$community=null,$os=null,$snmpVersion=null,$poller=null) {
 
+
+	function __construct($hostName=null,$template=null,$templateApps1=null,$templateApps2=null,$ip=null,$community=null,$os=null,$snmpVersion=null,$poller=null) {
+	
 		parent::__construct($hostName,$ip,$community,$os,$snmpVersion);
 	include (__DIR__.'/../config.php');
 	$this->user = $config['centreon']['user'];
@@ -23,7 +25,8 @@ private $clapi;
 	$this->template = $template;
 	$this->templateApps1 = $templateApps1;
 	$this->templateApps2 = $templateApps2;
-
+	
+	
 	}
 
 	/**
@@ -40,12 +43,15 @@ private $clapi;
 	$out = shell_exec($this->clapi. ' -u ' . $this->user . ' -p ' . $this->password . '   -a Pollerlist| cut -f 2 -d ";" | grep -v Return |grep -v name');
 	$PollerName = preg_split('/\s+/', trim($out));
 	return $PollerName;
+	
+
 	}
 
 	function getTemplateName():array {
 	 $out = shell_exec ($this->clapi. ' -u ' . $this->user . ' -p ' . $this->password . ' -e | egrep -e "^(HTPL)" | cut -f3 -d";" | uniq -d ');
 	$templateName = preg_split('/\s+/', trim($out));
 	return $templateName;
+
 	
 	}
 
@@ -67,6 +73,7 @@ private $clapi;
 	function applyCfg($centreonObject) {
 	$result = shell_exec("$this->clapi -u  $this->user   -p   $this->password  -a APPLYCFG -v \"$this->poller\"");
 	echo $result;
+	
 	}
 	
 	

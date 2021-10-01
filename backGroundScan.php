@@ -10,6 +10,7 @@ ini_set('display_startup_errors', 1);
 
 $centreonHost = new Centreon();
 $getIpCentreonHost = $centreonHost->getIpHost();
+$centreonHost->getPollerName();
 //Création d'un fichier pour stocker le resultat du scan
 
 $file=__DIR__."/resultScan";
@@ -22,11 +23,11 @@ foreach ($config['backGroundScan'] as $value) {
 
 
        $scan = new scan($value['network'], $value['community'], $value['version'], 7000);
-
-       $result = $scan->Scan();
+        
+       @$result = $scan->Scan();
 
        foreach ($result as $host) {
-
+      // var_dump($host);
               $trouve=false;
               foreach ($getIpCentreonHost as $centreonHost) {
               
@@ -39,7 +40,7 @@ foreach ($config['backGroundScan'] as $value) {
                   } 
                   
                   if ($trouve == false) {
-                      
+                  
                                      
                       fwrite($resultFile,$host->getHostName() ) ;
                       fwrite($resultFile,",");
@@ -52,7 +53,7 @@ foreach ($config['backGroundScan'] as $value) {
                       fwrite($resultFile,$host->getSnmpVersion() ) ; 
                       fwrite($resultFile,","); 
                       fwrite($resultFile,"\""); 
-                      fwrite($resultFile,implode(",", $host->getServices())) ; 
+                      @fwrite($resultFile,implode(",", $host->getServices())) ; 
                       fwrite($resultFile,"\""); 
                       fwrite($resultFile,"\n");   
                      
