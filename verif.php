@@ -1,17 +1,29 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+snmp_set_quick_print(1);
+error_reporting(E_ALL);
+
+
 include 'config.php';
-session_start();
+include 'classes/Centreon.class.php';
 
 
-if (($_POST['login'] === $config['centreon']['user']) && ($_POST['password'] === $config['centreon']['password'])) {
-$_SESSION['isAdmin'] = true;
-
-  header('Location: index.php');
 
 
+$centreon = new Centreon();
+$ClapiPassword = $centreon->verifClapiPassword($config['centreon']['user'], $config['centreon']['password']);
+
+if ($ClapiPassword == false) {
+  echo "Mot de passe centreon incorrect dans le fichier de configuration";
+  exit;
+} else {
+  session_start();
+
+
+  if (($_POST['login'] === $config['centreon']['user']) && ($_POST['password'] === $config['centreon']['password'])) {
+    $_SESSION['isAdmin'] = true;
+
+    header('Location: index.php');
+  }
 }
-
-
-
-
-?>

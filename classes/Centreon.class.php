@@ -1,6 +1,6 @@
 <?php
 
-
+require 'classes/HostLan.class.php';
 class Centreon extends Host {
 
 private $user ;
@@ -70,10 +70,22 @@ private $clapi;
 	shell_exec("$this->clapi -u  $this->user   -p   $this->password   -o HOST -a SETPARAM -v \"$this->hostName;host_snmp_version;$this->snmpVersion\"");
 	}
 
-	function applyCfg($centreonObject) {
+	function applyCfg($centreonObject):void {
 	$result = shell_exec("$this->clapi -u  $this->user   -p   $this->password  -a APPLYCFG -v \"$this->poller\"");
 	echo $result;
 	
+	}
+	//verifie que le mot de passe centreon est correct 
+	function verifClapiPassword($user,$password):bool {
+		$verif = exec("$this->clapi -u  $user   -p  $password --help");
+		
+		if ($verif === "Invalid credentials.") {
+			return false;
+		}
+		else {
+			return true;
+		}
+		
 	}
 	
 	
