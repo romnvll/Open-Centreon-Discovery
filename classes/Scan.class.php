@@ -1,5 +1,5 @@
 <?php
-require('HostLan.class.php');
+//require('HostLan.class.php');
 require('IPv4.class.php');
 
 
