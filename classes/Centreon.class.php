@@ -1,6 +1,6 @@
 <?php
 
-require 'classes/HostLan.class.php';
+//require 'classes/HostLan.class.php';
 class Centreon extends Host {
 
 private $user ;
