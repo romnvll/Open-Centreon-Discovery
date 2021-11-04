@@ -1,4 +1,10 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+snmp_set_quick_print(1);
+error_reporting(E_ALL);
+
+
 include 'config.php';
 include 'classes/Centreon.class.php';
 

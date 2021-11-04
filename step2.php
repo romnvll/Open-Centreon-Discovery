@@ -14,7 +14,7 @@ error_reporting(E_ALL);
 
 
 
-require('classes/Hosts.class.php');
+//require('classes/Hosts.class.php');
 require('classes/Centreon.class.php');
 
 

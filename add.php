@@ -8,7 +8,7 @@ if (!$_SESSION['isAdmin']) {
 	header('Location: login.php');
 	exit();
 }
-require ('classes/Hosts.class.php');
+//require ('classes/Hosts.class.php');
 require ('classes/Centreon.class.php');
 
 $centreon = new Centreon();
