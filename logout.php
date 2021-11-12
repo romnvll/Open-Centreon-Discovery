@@ -1,5 +1,5 @@
 <?php
-session_start();
-session_destroy();
+setcookie("isAdmin","", time() - 3600);
+echo $_COOKIE['isAdmin'];
 header('Location: login.php');
 ?>

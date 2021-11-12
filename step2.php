@@ -1,7 +1,7 @@
 <?php
 
-session_start();
-if (!$_SESSION['isAdmin']) {
+
+if (!$_COOKIE['isAdmin']) {
 
 	header('Location: login.php');
 	exit();

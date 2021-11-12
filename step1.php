@@ -5,9 +5,10 @@ ini_set('display_startup_errors', 1);
 snmp_set_quick_print(1);
 error_reporting(E_ALL);
 */
-session_start();
-if (!$_SESSION['isAdmin']) {
 
+
+if (!$_COOKIE['isAdmin']) {
+    
     header('Location: login.php');
     exit();
 }

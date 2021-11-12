@@ -18,7 +18,8 @@ if ($ClapiPassword == false) {
   session_start();
 
   if (($_POST['login'] === $config['centreon']['user']) && ($_POST['password'] === $config['centreon']['password'])) {
-    $_SESSION['isAdmin'] = true;
+    setcookie("isAdmin", true,time() + (86400 * 15));
+   
 
     header('Location: index.php');
   }
