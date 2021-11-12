@@ -15,7 +15,7 @@ if ($ClapiPassword == false) {
   echo "Mot de passe centreon incorrect dans le fichier de configuration";
   exit;
 } else {
-  session_start();
+  
 
   if (($_POST['login'] === $config['centreon']['user']) && ($_POST['password'] === $config['centreon']['password'])) {
     setcookie("isAdmin", true,time() + (86400 * 15));
