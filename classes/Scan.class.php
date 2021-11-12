@@ -24,7 +24,9 @@ class Scan
         $this->snmpTimeOut = $snmpTimeOut;
         $this->snmpLogin = $snmpLogin;
         $this->snmpPassword = $snmpPassword;
-        @$net = Net_IPv4::parseAddress($this->network);
+        $net = new Net_IPv4();
+        $net = $net->parseAddress($this->network);
+        //@$net = Net_IPv4::parseAddress($this->network);
         $this->startipLong = ip2long($net->network) + 1;
         $this->endipLong = ip2long($net->broadcast) - 1;
         $this->startip = long2ip($this->startipLong);
