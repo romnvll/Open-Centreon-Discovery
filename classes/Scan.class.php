@@ -109,6 +109,10 @@ class Scan
                 if ($os == "Windows" || $os == "Linux") {
 
                     $servicesSNMP = $snmp->walk("1.3.6.1.2.1.25.4.2.1.2");
+			 if ($servicesSNMP == false ) {
+                                $servicesSNMP = array();
+                        }
+
                     $serviceNameUnique = array_unique($servicesSNMP);
                     $services = array();
 
