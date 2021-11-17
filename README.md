@@ -1,4 +1,9 @@
 # Open Centreon Discovery
+
+
+### Correction de bug 16/11/2021 ###
+Correction pour PHP8 ( merci à ARRAWN777 pour ses retours ! )
+
 ### Correction de bug 06/05 ###
 Correction du scan BackGround
 
