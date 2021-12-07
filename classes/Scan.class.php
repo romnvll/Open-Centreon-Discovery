@@ -128,7 +128,7 @@ class Scan
                     @$hostLan = new HostLan($hostname, $ip, $this->community, $os, $this->snmpVersion, $services);
                 }
                 else {
-                    @$hostLan = new HostLan($hostname, $ip, $this->community, $os, $this->snmpVersion, null);
+                    @$hostLan = new HostLan($hostname, $ip, $this->community, $os, $this->snmpVersion);
                 }
                
                 

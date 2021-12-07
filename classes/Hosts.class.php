@@ -10,7 +10,7 @@ class Host  {
     protected $services = array();
     
 
-    function __construct($hostName,$ip,$community,$os,$snmpVersion,$services=null) 
+    function __construct($hostName,$ip,$community,$os,$snmpVersion,$services=[]) 
     {
         $this->hostName = $hostName;
         $this->ip = $ip;
@@ -18,7 +18,6 @@ class Host  {
         $this->os = $os;
         $this->snmpVersion = $snmpVersion;
         $this->services = $services;
-        
         
     }
 

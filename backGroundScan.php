@@ -27,7 +27,7 @@ foreach ($config['backGroundScan'] as $value) {
        @$result = $scan->Scan();
 
        foreach ($result as $host) {
-      // var_dump($host);
+     //  var_dump($host);
               $trouve=false;
               foreach ($getIpCentreonHost as $centreonHost) {
               
@@ -40,8 +40,9 @@ foreach ($config['backGroundScan'] as $value) {
                   } 
                   
                   if ($trouve == false) {
-                  
-                                     
+                 
+ 
+			//si aucun service ne tourne, il faut retourner un tableau vide
                       fwrite($resultFile,$host->getHostName() ) ;
                       fwrite($resultFile,",");
                       fwrite($resultFile,$host->getIP() ) ; 
@@ -52,8 +53,8 @@ foreach ($config['backGroundScan'] as $value) {
                       fwrite($resultFile,",");
                       fwrite($resultFile,$host->getSnmpVersion() ) ; 
                       fwrite($resultFile,","); 
-                      fwrite($resultFile,"\""); 
-                      @fwrite($resultFile,implode(",", $host->getServices())) ; 
+                      fwrite($resultFile,"\"");
+		     @fwrite($resultFile,implode(",", $host->getServices()) ) ;
                       fwrite($resultFile,"\""); 
                       fwrite($resultFile,"\n");   
                      
