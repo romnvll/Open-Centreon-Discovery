@@ -58,9 +58,8 @@ private $clapi;
 
 	function addHost($centreonObject):void {
 // ADD HHOST
- shell_exec ($this->clapi ." -u " .  $this->user  ." -p ".  $this->password  ." -o HOST -a ADD -v \"". $this->hostName .";".$this->hostName .";" . $this->ip .";" .$this->template."|".$this->templateApps1."|".$this->templateApps2 .";" .$this->poller .";;\"");
-
-//SET TPL	
+  shell_exec ($this->clapi ." -u " .  $this->user  ." -p ".  $this->password  ." -o HOST -a ADD -v \"". $this->hostName .";".$this->hostName .";" . $this->ip .";" .$this->template."|".$this->templateApps1."|".$this->templateApps2 .";" .$this->poller .";;\"");
+ //SET TPL	
 	shell_exec ("$this->clapi -u $this->user  -p  $this->password  -o HOST -a applytpl -v \"$this->hostName\" ");
 
 	}

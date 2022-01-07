@@ -9,10 +9,10 @@ if (!$_COOKIE['isAdmin']) {
 	header('Location: login.php');
 	exit();
 }
-//require ('classes/Hosts.class.php');
+
 require ('classes/Centreon.class.php');
 
-$centreon = new Centreon();
+//$centreon = new Centreon();
 
 if ($_GET['method'] == "apply") {
 	
