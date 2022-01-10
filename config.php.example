@@ -26,7 +26,7 @@ $config['backGroundScan'][0] = array("network" => "192.168.14.0/24",
 $config['backGroundScan'][1] = array("network" => "192.168.4.0/24",
                                      "community"=>"community",
 				     "autoAdd" =>"true",
-			             "poller" => "Central",
+			             "Poller" => "Central",
                                     "version"=>"2c" );
 
 $config['backGroundScan'][2] = array("network" => "192.168.92.0/24",
