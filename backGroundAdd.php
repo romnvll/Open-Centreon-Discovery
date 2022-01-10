@@ -22,7 +22,7 @@ if ($trouve == false) {
     foreach ($centreon->getTemplateName() as $template) {
 
         //si le nom du template correspond au nom du serveur
-        if (str_contains(strtolower($template), strtolower($host->getOS()))) {
+        if (strpos(strtolower($template), strtolower($host->getOS()))) {
             
             $host = new Centreon($host->gethostname(),$template,null,null,$host->getIp(),$host->getCommunity(),$host->getOs(),$host->getSnmpVersion(),$value['Poller']);
                 
