@@ -90,7 +90,13 @@ class Scan
                     $os = "WatchGuard";
                 } elseif (stripos($os, "SNMPv2-SMI::enterprises.2011.2.23.431") !== false) {
                     $os = "Huawei";
-                
+                } elseif (stripos($os, "S6730") !== false) {
+                    $os = "Huawei-S6730";
+		
+                } elseif (stripos($os, "S5735") !== false) {
+                    $os = "Huawei-S5735";
+
+		
                 } else {
                     $os = "Unknown";
                 }
