@@ -17,12 +17,13 @@ function autoTemplate() {
         //console.log (hostTemplate);
         for (i = 0; i < hostTemplate.length; i++) {
 
-
-            //console.log (hostTemplate[i].innerText.toLowerCase())
+	//	console.log (hostTemplate[i].innerText)
+	//	console.log ("--")
+	//	console.log (os.toLowerCase())
             if (hostTemplate[i].innerText.toLowerCase().includes(os.toLowerCase())) {
 
-                //console.log("trouvé" + os)
-                //console.log(hostTemplate[i].innerText.toLowerCase())
+                console.log("trouvé" + os)
+                console.log(hostTemplate[i].innerText.toLowerCase())
 
                 hostTemplate.selectedIndex = i
                 $('.selectpicker').selectpicker('refresh');

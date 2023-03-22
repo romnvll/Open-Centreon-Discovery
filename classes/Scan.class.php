@@ -91,10 +91,10 @@ class Scan
                 } elseif (stripos($os, "SNMPv2-SMI::enterprises.2011.2.23.431") !== false) {
                     $os = "Huawei";
                 } elseif (stripos($os, "S6730") !== false) {
-                    $os = "Huawei-S6730";
+                    $os = "Huawei S6730";
 		
                 } elseif (stripos($os, "S5735") !== false) {
-                    $os = "Huawei-S5735";
+                    $os = "Huawei S5735";
 
 		
                 } else {
